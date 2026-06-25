@@ -2,825 +2,954 @@
 <html class="dark" lang="de">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta name="description" content="FC Besa St. Gallen – Offizieller Internetauftritt. Aktuelles, Spielplan, Teams und mehr."/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="FC Besa St. Gallen – Offizielle Website. Spielplan, News, Teams und mehr seit 1992."/>
 <title>FC BESA ST. GALLEN | Offizielle Website</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
 <script>
 tailwind.config = {
-  darkMode: "class",
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        "rubine-red": "#A40011",
-        "matte-black": "#0D0D0D",
-        "parisian-gold": "#C5A059",
-        "st-gallen-white": "#F4F4F4",
-        "surface": "#1e0f0e",
-        "surface-container-lowest": "#180a09",
-        "surface-container-low": "#271816",
-        "surface-container": "#2c1b1a",
-        "surface-container-high": "#372624",
-        "on-surface": "#fadcd8",
-        "outline-variant": "#5b403d",
+        'besa-red':   '#A40011',
+        'besa-black': '#0D0D0D',
+        'besa-gold':  '#C5A059',
+        'besa-white': '#F4F4F4',
+        'card':       '#130b0a',
+        'card-hover': '#1c1110',
+        'border-dim': 'rgba(255,255,255,0.06)',
       },
       fontFamily: {
-        "bebas": ["Bebas Neue", "sans-serif"],
-        "grotesk": ["Hanken Grotesk", "sans-serif"],
+        display: ['Bebas Neue', 'sans-serif'],
+        body:    ['Hanken Grotesk', 'sans-serif'],
       }
     }
   }
 }
 </script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; }
+/* ── Reset & Base ─────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body { font-family: 'Hanken Grotesk', sans-serif; background: #0D0D0D; color: #F4F4F4; overflow-x: hidden; }
+body.menu-open { overflow: hidden; }
+.ms { font-family: 'Material Symbols Outlined'; font-weight: 400; font-style: normal;
+      font-size: 20px; line-height: 1; letter-spacing: normal; text-transform: none;
+      display: inline-block; white-space: nowrap; word-wrap: normal; vertical-align: middle; }
 
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    vertical-align: middle;
-    display: inline-block;
-  }
+/* ── Ticker ───────────────────────────── */
+.ticker-wrap { background: #A40011; overflow: hidden; white-space: nowrap; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.ticker-track { display: inline-flex; animation: ticker 32s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item { padding: 0 40px; font-family: 'Hanken Grotesk'; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.92); }
+.ticker-sep { padding: 0 8px; color: rgba(255,255,255,0.35); }
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-  /* Mobile drawer */
-  #mobile-drawer {
-    transform: translateX(100%);
-    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  #mobile-drawer.is-open { transform: translateX(0); }
-  #drawer-overlay {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-  #drawer-overlay.is-open { opacity: 1; pointer-events: all; }
+/* ── Mobile drawer ───────────────────── */
+#drawer { transform: translateX(100%); transition: transform .32s cubic-bezier(.4,0,.2,1); }
+#drawer.open { transform: translateX(0); }
+#overlay { opacity: 0; pointer-events: none; transition: opacity .28s; }
+#overlay.open { opacity: 1; pointer-events: all; }
 
-  /* Gradients */
-  .hero-grad-bottom {
-    background: linear-gradient(to top, #0D0D0D 0%, rgba(13,13,13,0.6) 40%, transparent 100%);
-  }
-  .hero-grad-left {
-    background: linear-gradient(to right, rgba(13,13,13,0.75) 0%, transparent 55%);
-  }
+/* ── Nav underline ───────────────────── */
+.nlink { position: relative; }
+.nlink::after { content:''; position: absolute; bottom:-2px; left:0; width:0; height:2px; background:#A40011; transition: width .22s ease; }
+.nlink:hover::after { width: 100%; }
 
-  /* Glass card */
-  .glass { background: rgba(20,10,9,0.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+/* ── Hero gradient ───────────────────── */
+.hero-grad { background: linear-gradient(to top, #0D0D0D 0%, rgba(13,13,13,.55) 45%, transparent 100%); }
+.hero-grad-left { background: linear-gradient(to right, rgba(13,13,13,.65) 0%, transparent 55%); }
 
-  /* Underline hover */
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0;
-    width: 0; height: 1px;
-    background: #A40011;
-    transition: width 0.25s ease;
-  }
-  .nav-link:hover::after { width: 100%; }
+/* ── Scrollbar hide ──────────────────── */
+.no-sb::-webkit-scrollbar { display: none; } .no-sb { -ms-overflow-style:none; scrollbar-width:none; }
 
-  /* Scrollbar hide */
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+/* ── Category pill ───────────────────── */
+.cat-pill { display: inline-block; font-family: 'Hanken Grotesk'; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; padding: 3px 9px; }
 
-  /* Smooth scroll */
-  html { scroll-behavior: smooth; }
+/* ── Tab active ──────────────────────── */
+.tab-btn.active { color:#A40011; border-bottom-color: #A40011; }
 
-  /* Body overflow lock */
-  body.menu-open { overflow: hidden; }
+/* ── Transitions ─────────────────────── */
+a, button { transition: color .2s, background .2s, opacity .2s, transform .2s; }
+img { display: block; max-width: 100%; }
 
-  /* Reduce motion */
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  }
+/* ── Section header accent ────────────── */
+.sh-accent { display: inline-block; width: 3px; height: 1.3em; background: #A40011; margin-right: 10px; vertical-align: middle; flex-shrink: 0; }
+
+/* ── Lazy fade-in ─────────────────────── */
+img[loading="lazy"] { opacity: 0; transition: opacity .5s; }
+img[loading="lazy"].loaded { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
+}
 </style>
 </head>
 
-<body class="bg-matte-black text-on-surface overflow-x-hidden font-grotesk selection:bg-rubine-red selection:text-white">
+<body>
 
-<!-- Skip Link -->
-<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[200] focus:bg-rubine-red focus:text-white focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:rounded">
-  Zum Inhalt springen
+<!-- ──────────────────────────────────────
+     SKIP LINK
+────────────────────────────────────────── -->
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[300] focus:bg-besa-red focus:text-white focus:px-4 focus:py-2 focus:text-sm focus:font-bold">
+  Zum Inhalt
 </a>
 
-<!-- ═══════════════════════════════════════
-     TOP BANNER
-═══════════════════════════════════════ -->
-<div class="bg-rubine-red text-white py-2 text-center overflow-hidden">
-  <div class="flex items-center justify-center gap-4 sm:gap-8">
-    <span class="font-grotesk text-[9px] font-bold tracking-[0.3em] uppercase hidden sm:inline">Est. 1992</span>
-    <span class="font-bebas text-sm sm:text-base tracking-[0.2em] uppercase">Tradition &amp; Integration — FC Besa St. Gallen</span>
-    <span class="font-grotesk text-[9px] font-bold tracking-[0.3em] uppercase hidden sm:inline">St. Gallen</span>
+<!-- ──────────────────────────────────────
+     SCROLLING TICKER
+────────────────────────────────────────── -->
+<div class="ticker-wrap" role="marquee" aria-label="Aktuelle Nachrichten">
+  <div class="ticker-track" aria-hidden="true">
+    <!-- First copy -->
+    <span class="ticker-item">FC Besa vs FC Arbon</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">14. April · 16:00 · Espenmoos</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">Heimsieg 4:1 gegen RG17 II</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">Eagles Cup 2024: Jetzt anmelden</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">C-Junioren vs FC Wittenbach · 21. Apr · 10:00</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">Clubmitgliedschaft 2024 offen</span><span class="ticker-sep">•</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item">FC Besa vs FC Arbon</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">14. April · 16:00 · Espenmoos</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">Heimsieg 4:1 gegen RG17 II</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">Eagles Cup 2024: Jetzt anmelden</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">C-Junioren vs FC Wittenbach · 21. Apr · 10:00</span><span class="ticker-sep">•</span>
+    <span class="ticker-item">Clubmitgliedschaft 2024 offen</span><span class="ticker-sep">•</span>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- ──────────────────────────────────────
      MOBILE DRAWER OVERLAY
-═══════════════════════════════════════ -->
-<div id="drawer-overlay" aria-hidden="true" class="fixed inset-0 bg-black/70 z-[90] lg:hidden"></div>
+────────────────────────────────────────── -->
+<div id="overlay" aria-hidden="true" class="fixed inset-0 bg-black/75 z-[80] lg:hidden"></div>
 
-<!-- ═══════════════════════════════════════
+<!-- ──────────────────────────────────────
      MOBILE DRAWER
-═══════════════════════════════════════ -->
-<div id="mobile-drawer" role="dialog" aria-modal="true" aria-label="Hauptnavigation"
-  class="fixed top-0 right-0 h-full w-[82vw] max-w-[320px] bg-[#0e0707] z-[100] lg:hidden flex flex-col border-l border-white/5">
-
-  <!-- Drawer header -->
+────────────────────────────────────────── -->
+<div id="drawer" role="dialog" aria-modal="true" aria-label="Navigation"
+  class="fixed top-0 right-0 h-full w-[80vw] max-w-[300px] bg-[#0e0707] z-[90] lg:hidden flex flex-col border-l border-white/5">
   <div class="flex items-center justify-between px-5 py-4 border-b border-white/5">
-    <img alt="FC Besa St. Gallen Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"/>
-    <button id="drawer-close" aria-label="Menü schließen"
-      class="w-11 h-11 flex items-center justify-center text-white/50 hover:text-white transition-colors">
-      <span class="material-symbols-outlined">close</span>
+    <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+      alt="FC Besa St. Gallen" class="h-9 w-auto"/>
+    <button id="drawer-close" aria-label="Schließen" class="w-10 h-10 flex items-center justify-center text-white/50 hover:text-white">
+      <span class="ms" style="font-size:22px">close</span>
     </button>
   </div>
-
-  <!-- Drawer links -->
-  <nav class="flex-1 overflow-y-auto" aria-label="Mobilnavigation">
-    <ul>
-      <li><a href="#" class="flex items-center gap-4 px-5 py-4 text-sm font-bold tracking-[0.12em] uppercase text-white/70 hover:text-white hover:bg-white/5 border-b border-white/5 transition-all">
-        <span class="material-symbols-outlined text-rubine-red" style="font-size:18px">sports_soccer</span>Match Center</a></li>
-      <li><a href="#" class="flex items-center gap-4 px-5 py-4 text-sm font-bold tracking-[0.12em] uppercase text-white/70 hover:text-white hover:bg-white/5 border-b border-white/5 transition-all">
-        <span class="material-symbols-outlined text-rubine-red" style="font-size:18px">newspaper</span>News</a></li>
-      <li><a href="#" class="flex items-center gap-4 px-5 py-4 text-sm font-bold tracking-[0.12em] uppercase text-white/70 hover:text-white hover:bg-white/5 border-b border-white/5 transition-all">
-        <span class="material-symbols-outlined text-rubine-red" style="font-size:18px">groups</span>Teams</a></li>
-      <li><a href="#" class="flex items-center gap-4 px-5 py-4 text-sm font-bold tracking-[0.12em] uppercase text-white/70 hover:text-white hover:bg-white/5 border-b border-white/5 transition-all">
-        <span class="material-symbols-outlined text-rubine-red" style="font-size:18px">favorite</span>Espen Girls</a></li>
-      <li><a href="#" class="flex items-center gap-4 px-5 py-4 text-sm font-bold tracking-[0.12em] uppercase text-white/70 hover:text-white hover:bg-white/5 border-b border-white/5 transition-all">
-        <span class="material-symbols-outlined text-rubine-red" style="font-size:18px">info</span>Verein</a></li>
-      <li><a href="#" class="flex items-center gap-4 px-5 py-4 text-sm font-bold tracking-[0.12em] uppercase text-white/70 hover:text-white hover:bg-white/5 transition-all">
-        <span class="material-symbols-outlined text-rubine-red" style="font-size:18px">handshake</span>Sponsoring</a></li>
+  <nav class="flex-1 overflow-y-auto" aria-label="Mobile Navigation">
+    <ul class="divide-y divide-white/5">
+      <li><a href="#" class="flex items-center gap-3 px-5 py-4 text-sm font-semibold tracking-wide uppercase text-white/70 hover:text-besa-red hover:bg-white/[0.03]">
+        <span class="ms text-besa-red" style="font-size:17px">sports_soccer</span>Match Center</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-5 py-4 text-sm font-semibold tracking-wide uppercase text-white/70 hover:text-besa-red hover:bg-white/[0.03]">
+        <span class="ms text-besa-red" style="font-size:17px">newspaper</span>News</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-5 py-4 text-sm font-semibold tracking-wide uppercase text-white/70 hover:text-besa-red hover:bg-white/[0.03]">
+        <span class="ms text-besa-red" style="font-size:17px">groups</span>Teams</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-5 py-4 text-sm font-semibold tracking-wide uppercase text-white/70 hover:text-besa-red hover:bg-white/[0.03]">
+        <span class="ms text-besa-red" style="font-size:17px">favorite</span>Espen Girls</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-5 py-4 text-sm font-semibold tracking-wide uppercase text-white/70 hover:text-besa-red hover:bg-white/[0.03]">
+        <span class="ms text-besa-red" style="font-size:17px">info</span>Verein</a></li>
+      <li><a href="#" class="flex items-center gap-3 px-5 py-4 text-sm font-semibold tracking-wide uppercase text-white/70 hover:text-besa-red hover:bg-white/[0.03]">
+        <span class="ms text-besa-red" style="font-size:17px">handshake</span>Sponsoring</a></li>
     </ul>
   </nav>
-
-  <!-- Drawer CTA -->
-  <div class="p-5 border-t border-white/5 space-y-3">
-    <button class="w-full bg-rubine-red text-white font-grotesk text-[11px] font-bold py-4 tracking-[0.25em] uppercase hover:bg-white hover:text-matte-black transition-all">
-      Mitglied werden
-    </button>
-    <div class="flex items-center justify-center gap-5 pt-1">
-      <a href="#" aria-label="Facebook" class="w-9 h-9 flex items-center justify-center text-white/40 hover:text-white transition-colors">
-        <span class="material-symbols-outlined" style="font-size:20px">facebook</span>
-      </a>
-      <a href="#" aria-label="Instagram" class="w-9 h-9 flex items-center justify-center text-white/40 hover:text-white transition-colors">
-        <span class="material-symbols-outlined" style="font-size:20px">photo_camera</span>
-      </a>
-      <a href="#" aria-label="YouTube" class="w-9 h-9 flex items-center justify-center text-white/40 hover:text-white transition-colors">
-        <span class="material-symbols-outlined" style="font-size:20px">smart_display</span>
-      </a>
-    </div>
+  <div class="p-5 border-t border-white/5">
+    <a href="#" class="block w-full bg-besa-red text-white text-center text-xs font-bold py-3.5 tracking-[.22em] uppercase hover:bg-white hover:text-besa-black">Mitglied werden</a>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     NAVIGATION
-═══════════════════════════════════════ -->
+<!-- ──────────────────────────────────────
+     NAVIGATION  (PSG-style: solid, clean)
+────────────────────────────────────────── -->
 <header>
-<nav id="main-nav" class="sticky top-0 w-full z-50 transition-all duration-300 bg-matte-black/95 backdrop-blur-md border-b border-parisian-gold/15">
-  <div class="max-w-[1600px] mx-auto h-[68px] sm:h-[76px] flex items-center justify-between px-4 sm:px-6">
+<nav id="nav" class="sticky top-0 z-50 bg-besa-black border-b border-white/[0.07]">
+  <div class="max-w-[1480px] mx-auto h-[66px] sm:h-[72px] flex items-center justify-between px-4 sm:px-6 lg:px-8">
 
     <!-- Logo -->
     <a href="/" aria-label="FC Besa St. Gallen – Startseite" class="flex-shrink-0">
-      <img alt="FC Besa St. Gallen" class="h-11 sm:h-13 w-auto" style="height:52px"
-        src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"/>
+      <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+        alt="FC Besa St. Gallen" style="height:48px" class="w-auto"/>
     </a>
 
-    <!-- Desktop links -->
-    <div class="hidden lg:flex items-center gap-8 xl:gap-10" role="navigation" aria-label="Hauptnavigation">
-      <a href="#" class="nav-link relative font-grotesk text-[11px] font-bold tracking-[0.15em] text-white/65 hover:text-white transition-colors uppercase">Match Center</a>
-      <a href="#" class="nav-link relative font-grotesk text-[11px] font-bold tracking-[0.15em] text-white/65 hover:text-white transition-colors uppercase">News</a>
-      <a href="#" class="nav-link relative font-grotesk text-[11px] font-bold tracking-[0.15em] text-white/65 hover:text-white transition-colors uppercase">Teams</a>
-      <a href="#" class="nav-link relative font-grotesk text-[11px] font-bold tracking-[0.15em] text-white/65 hover:text-white transition-colors uppercase">Espen Girls</a>
-      <a href="#" class="nav-link relative font-grotesk text-[11px] font-bold tracking-[0.15em] text-white/65 hover:text-white transition-colors uppercase">Verein</a>
-      <a href="#" class="nav-link relative font-grotesk text-[11px] font-bold tracking-[0.15em] text-white/65 hover:text-white transition-colors uppercase">Sponsoring</a>
+    <!-- Desktop links (PSG-style: center) -->
+    <ul class="hidden lg:flex items-center gap-7 xl:gap-9" role="navigation" aria-label="Hauptnavigation">
+      <li><a href="#" class="nlink font-body text-[11.5px] font-semibold tracking-[.14em] uppercase text-besa-white/65 hover:text-besa-white pb-0.5">Match Center</a></li>
+      <li><a href="#" class="nlink font-body text-[11.5px] font-semibold tracking-[.14em] uppercase text-besa-white/65 hover:text-besa-white pb-0.5">News</a></li>
+      <li><a href="#" class="nlink font-body text-[11.5px] font-semibold tracking-[.14em] uppercase text-besa-white/65 hover:text-besa-white pb-0.5">Teams</a></li>
+      <li><a href="#" class="nlink font-body text-[11.5px] font-semibold tracking-[.14em] uppercase text-besa-white/65 hover:text-besa-white pb-0.5">Espen Girls</a></li>
+      <li><a href="#" class="nlink font-body text-[11.5px] font-semibold tracking-[.14em] uppercase text-besa-white/65 hover:text-besa-white pb-0.5">Verein</a></li>
+      <li><a href="#" class="nlink font-body text-[11.5px] font-semibold tracking-[.14em] uppercase text-besa-white/65 hover:text-besa-white pb-0.5">Sponsoring</a></li>
+    </ul>
+
+    <!-- Right actions (PSG-style: utility icons + CTA) -->
+    <div class="flex items-center gap-1">
+      <button aria-label="Suche" class="w-10 h-10 flex items-center justify-center text-besa-white/55 hover:text-besa-white">
+        <span class="ms" style="font-size:21px">search</span>
+      </button>
+      <button aria-label="Mein Konto" class="w-10 h-10 hidden sm:flex items-center justify-center text-besa-white/55 hover:text-besa-white">
+        <span class="ms" style="font-size:21px">person</span>
+      </button>
+      <button aria-label="Warenkorb" class="w-10 h-10 hidden sm:flex items-center justify-center text-besa-white/55 hover:text-besa-white relative">
+        <span class="ms" style="font-size:21px">shopping_bag</span>
+        <span class="absolute top-1.5 right-1 bg-besa-red text-white text-[8px] font-bold w-[14px] h-[14px] rounded-full flex items-center justify-center">0</span>
+      </button>
+      <!-- PSG-style CTA in nav -->
+      <a href="#" class="hidden lg:flex ml-3 items-center bg-besa-red text-white text-[10.5px] font-bold tracking-[.18em] uppercase px-5 py-2.5 hover:bg-white hover:text-besa-black">
+        Shop
+      </a>
+      <button id="menu-btn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="drawer"
+        class="lg:hidden w-10 h-10 flex items-center justify-center text-besa-white/60 hover:text-besa-white ml-1">
+        <span class="ms" style="font-size:22px">menu</span>
+      </button>
     </div>
 
-    <!-- Action icons -->
-    <div class="flex items-center gap-0.5">
-      <button aria-label="Suche öffnen" class="w-11 h-11 flex items-center justify-center text-white/60 hover:text-white transition-colors">
-        <span class="material-symbols-outlined" style="font-size:22px">search</span>
-      </button>
-      <button aria-label="Mein Konto" class="w-11 h-11 hidden sm:flex items-center justify-center text-white/60 hover:text-white transition-colors">
-        <span class="material-symbols-outlined" style="font-size:22px">person</span>
-      </button>
-      <button aria-label="Warenkorb, 0 Artikel" class="w-11 h-11 flex items-center justify-center text-white/60 hover:text-white transition-colors relative">
-        <span class="material-symbols-outlined" style="font-size:22px">shopping_bag</span>
-        <span aria-hidden="true" class="absolute top-2 right-2 bg-rubine-red text-white text-[8px] font-bold rounded-full w-[14px] h-[14px] flex items-center justify-center leading-none">0</span>
-      </button>
-      <button id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-drawer"
-        class="lg:hidden w-11 h-11 flex items-center justify-center text-white/60 hover:text-white transition-colors ml-1">
-        <span class="material-symbols-outlined" style="font-size:22px">menu</span>
-      </button>
-    </div>
   </div>
 </nav>
 </header>
 
-<!-- ═══════════════════════════════════════
-     MAIN CONTENT
-═══════════════════════════════════════ -->
+<!-- ──────────────────────────────────────
+     MAIN
+────────────────────────────────────────── -->
 <main id="main">
 
-  <!-- ── HERO ──────────────────────────── -->
-  <section class="relative w-full min-h-[88svh] sm:min-h-[85vh] overflow-hidden" aria-label="Hero">
-    <!-- BG Image -->
-    <div class="absolute inset-0">
-      <img alt="" aria-hidden="true" loading="eager"
-        class="w-full h-full object-cover object-center"
-        src="https://lh3.googleusercontent.com/aida/AP1WRLsRAimsdEnesSUO0HBBtHQDKy3rQjjN-P_Iu-7w6f7-OqZ9oLWF2w0U7C5mvHOi3JhE-vvjGFAUKqyDlPISq9u2-nvo9opQxdhQhr3sqCczW4V6oO-03EV9atS5OeKRK35hM6trvmhacOUtUT_i-13BYPt0FZr6LvLX_zDKa0vuA_vmcDAiocyNmWMFzIhFSXMZW-toQDRj4_Zlf4k0zPXoadYGyTa9z2wOjRROTd82KfAcueblM7spaIAm"/>
-      <div class="absolute inset-0 bg-black/45"></div>
-      <div class="absolute inset-0 hero-grad-bottom"></div>
-      <div class="absolute inset-0 hero-grad-left"></div>
+<!-- ════════════════════════════════════
+     HERO  (PSG: full-bleed, editorial)
+════════════════════════════════════════ -->
+<section class="relative w-full overflow-hidden" style="min-height: min(90svh, 700px)" aria-label="Hero">
+  <!-- BG -->
+  <div class="absolute inset-0">
+    <img src="https://lh3.googleusercontent.com/aida/AP1WRLsRAimsdEnesSUO0HBBtHQDKy3rQjjN-P_Iu-7w6f7-OqZ9oLWF2w0U7C5mvHOi3JhE-vvjGFAUKqyDlPISq9u2-nvo9opQxdhQhr3sqCczW4V6oO-03EV9atS5OeKRK35hM6trvmhacOUtUT_i-13BYPt0FZr6LvLX_zDKa0vuA_vmcDAiocyNmWMFzIhFSXMZW-toQDRj4_Zlf4k0zPXoadYGyTa9z2wOjRROTd82KfAcueblM7spaIAm"
+      alt="" aria-hidden="true" loading="eager" class="w-full h-full object-cover object-center"/>
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="absolute inset-0 hero-grad"></div>
+    <div class="absolute inset-0 hero-grad-left"></div>
+  </div>
+
+  <!-- Content (PSG: bottom-left, editorial) -->
+  <div class="relative z-10 max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-10 sm:pb-14 lg:pb-16"
+    style="min-height: min(90svh, 700px)">
+
+    <!-- Category pill (PSG-style: small label above headline) -->
+    <div class="mb-3">
+      <span class="cat-pill bg-besa-red text-white">1. Mannschaft</span>
     </div>
 
-    <!-- Content -->
-    <div class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 flex flex-col justify-end pb-14 sm:pb-20 lg:pb-24 min-h-[88svh] sm:min-h-[85vh]">
+    <!-- Headline -->
+    <h1 class="font-display uppercase text-besa-white leading-[.9] mb-5 sm:mb-6"
+      style="font-size: clamp(54px, 10vw, 130px)">
+      Mehr als<br/>ein Verein
+    </h1>
 
-      <!-- Desktop layout with vertical bar -->
-      <div class="hidden lg:flex items-start gap-10 xl:gap-14">
-        <div class="flex flex-col items-center pt-2 flex-shrink-0">
-          <div class="w-px h-32 xl:h-44 bg-white/20 mb-5"></div>
-          <span class="font-grotesk text-[9px] font-bold tracking-[0.45em] text-white/45 uppercase" style="writing-mode:vertical-rl; transform:rotate(180deg)">Est. 1992</span>
+    <!-- Sub-info + CTAs (PSG-style: inline) -->
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+      <a href="#" class="inline-flex items-center justify-center bg-besa-red text-white text-[11px] font-bold tracking-[.22em] uppercase px-8 py-3.5 hover:bg-besa-white hover:text-besa-black w-full sm:w-auto">
+        Jetzt Entdecken
+      </a>
+      <a href="#" class="inline-flex items-center justify-center border border-white/40 text-white text-[11px] font-bold tracking-[.22em] uppercase px-8 py-3.5 hover:bg-white/10 w-full sm:w-auto">
+        Verein Profil
+      </a>
+    </div>
+
+    <!-- Hero footer strip: next match preview (PSG always shows next match info on hero) -->
+    <div class="mt-8 sm:mt-10 flex items-center gap-6 flex-wrap">
+      <div class="flex items-center gap-3">
+        <span class="text-besa-white/40 text-[10px] font-bold tracking-[.18em] uppercase">Nächstes Spiel</span>
+        <span class="text-besa-white text-[10px] font-bold tracking-[.12em]">14. Apr · 16:00</span>
+      </div>
+      <div class="w-px h-4 bg-white/20"></div>
+      <div class="flex items-center gap-2.5">
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+          alt="FC Besa" class="h-5 w-auto opacity-80"/>
+        <span class="text-besa-white/70 text-xs font-semibold">FC Besa</span>
+        <span class="text-besa-white/35 text-xs font-bold mx-1">vs</span>
+        <span class="text-besa-white/70 text-xs font-semibold">FC Arbon</span>
+      </div>
+      <div class="w-px h-4 bg-white/20"></div>
+      <span class="text-besa-white/40 text-[10px] font-bold tracking-[.12em]">Espenmoos · 2. Liga Regional</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     MATCH CENTER  (PSG: horizontal cards, prominent)
+════════════════════════════════════════ -->
+<section class="bg-card border-b border-white/[0.06]" aria-label="Spielplan">
+  <div class="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+    <!-- Section header (PSG-style: accent + title + link) -->
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-2.5">
+        <span class="sh-accent" aria-hidden="true"></span>
+        <h2 class="font-display text-xl sm:text-2xl uppercase tracking-wider">Spielplan</h2>
+        <span class="text-besa-white/30 text-[10px] font-bold tracking-[.15em] uppercase ml-2 hidden sm:inline">Saison 2024/25</span>
+      </div>
+      <a href="#" class="flex items-center gap-1.5 text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/40 hover:text-besa-red">
+        Alle Spiele <span class="ms" style="font-size:14px">arrow_forward</span>
+      </a>
+    </div>
+
+    <!-- Cards row (PSG: scrollable, equal-size cards) -->
+    <div class="flex gap-3 sm:gap-4 overflow-x-auto no-sb pb-1 -mx-4 sm:mx-0 px-4 sm:px-0">
+
+      <!-- Match: Upcoming (NEXT) -->
+      <article class="flex-shrink-0 w-[220px] sm:w-[250px] bg-besa-black border border-white/[0.08] hover:border-besa-red/40 cursor-pointer group" aria-label="Nächstes Spiel: FC Besa vs FC Arbon">
+        <!-- Competition header (PSG style) -->
+        <div class="px-4 pt-3.5 pb-2.5 border-b border-white/[0.06] flex items-center justify-between">
+          <span class="text-[9.5px] font-bold tracking-[.15em] uppercase text-besa-white/40">2. Liga Regional</span>
+          <span class="bg-besa-red/15 text-besa-red text-[9px] font-bold tracking-[.12em] uppercase px-2 py-0.5">Demnächst</span>
         </div>
-        <div class="max-w-5xl">
-          <p class="font-grotesk text-[10px] font-bold tracking-[0.4em] uppercase text-parisian-gold mb-4">FC Besa St. Gallen — Seit 1992</p>
-          <h1 class="font-bebas leading-[0.88] uppercase text-white mb-8" style="font-size:clamp(72px,8.5vw,134px)">
-            Mehr als<br/>ein Verein
-          </h1>
-          <p class="font-grotesk text-base text-white/55 mb-8 max-w-md leading-relaxed">
-            Tradition, Leidenschaft und Zusammenhalt – der FC Besa ist mehr als Fussball.
+        <!-- Teams & score -->
+        <div class="px-4 py-4 flex items-center justify-between gap-2">
+          <div class="text-center flex-1">
+            <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+              alt="FC Besa" loading="lazy" class="h-9 mx-auto mb-1.5 opacity-90"/>
+            <p class="text-[9px] font-bold uppercase tracking-wider text-besa-white/70">FC Besa</p>
+          </div>
+          <div class="text-center px-2">
+            <p class="font-display text-[13px] tracking-widest text-besa-white/40">VS</p>
+            <p class="text-[9px] text-besa-gold font-bold mt-0.5">14.04 · 16:00</p>
+          </div>
+          <div class="text-center flex-1">
+            <div class="h-9 flex items-center justify-center mb-1.5">
+              <span class="ms text-besa-white/20" style="font-size:28px">sports_soccer</span>
+            </div>
+            <p class="text-[9px] font-bold uppercase tracking-wider text-besa-white/45">FC Arbon</p>
+          </div>
+        </div>
+        <!-- Footer link -->
+        <div class="border-t border-white/[0.06] px-4 py-2.5 text-center">
+          <span class="text-[9px] font-bold tracking-[.15em] uppercase text-besa-white/30 group-hover:text-besa-red">Match Center →</span>
+        </div>
+      </article>
+
+      <!-- Match: Result WIN -->
+      <article class="flex-shrink-0 w-[220px] sm:w-[250px] bg-besa-black border border-white/[0.08] hover:border-white/20 cursor-pointer group">
+        <div class="px-4 pt-3.5 pb-2.5 border-b border-white/[0.06] flex items-center justify-between">
+          <span class="text-[9.5px] font-bold tracking-[.15em] uppercase text-besa-white/40">2. Liga Regional</span>
+          <span class="bg-besa-gold/10 text-besa-gold text-[9px] font-bold tracking-[.12em] uppercase px-2 py-0.5">Gestern</span>
+        </div>
+        <div class="px-4 py-4 flex items-center justify-between gap-2">
+          <div class="text-center flex-1">
+            <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+              alt="FC Besa" loading="lazy" class="h-9 mx-auto mb-1.5 opacity-90"/>
+            <p class="text-[9px] font-bold uppercase tracking-wider text-besa-white/70">FC Besa</p>
+          </div>
+          <div class="text-center px-1">
+            <p class="font-display text-2xl text-besa-red leading-none">4:1</p>
+            <p class="text-[8px] font-bold tracking-wider uppercase text-besa-gold mt-1">Sieg</p>
+          </div>
+          <div class="text-center flex-1">
+            <div class="h-9 flex items-center justify-center mb-1.5">
+              <span class="ms text-besa-white/20" style="font-size:28px">sports_soccer</span>
+            </div>
+            <p class="text-[9px] font-bold uppercase tracking-wider text-besa-white/45">FC RG17 II</p>
+          </div>
+        </div>
+        <div class="border-t border-white/[0.06] px-4 py-2.5 text-center">
+          <span class="text-[9px] font-bold tracking-[.15em] uppercase text-besa-white/30 group-hover:text-besa-red">Matchbericht →</span>
+        </div>
+      </article>
+
+      <!-- Match: C-Junioren -->
+      <article class="flex-shrink-0 w-[220px] sm:w-[250px] bg-besa-black border border-white/[0.08] hover:border-white/20 cursor-pointer group">
+        <div class="px-4 pt-3.5 pb-2.5 border-b border-white/[0.06] flex items-center justify-between">
+          <span class="text-[9.5px] font-bold tracking-[.15em] uppercase text-besa-white/40">C-Junioren</span>
+          <span class="text-[9px] font-bold tracking-[.12em] uppercase text-besa-white/30">21. Apr</span>
+        </div>
+        <div class="px-4 py-4 flex items-center justify-between gap-2">
+          <div class="text-center flex-1">
+            <div class="h-9 flex items-center justify-center mb-1.5">
+              <span class="ms text-besa-white/20" style="font-size:28px">sports_soccer</span>
+            </div>
+            <p class="text-[9px] font-bold uppercase tracking-wider text-besa-white/45">FC Wittenbach</p>
+          </div>
+          <div class="text-center px-2">
+            <p class="font-display text-[13px] tracking-widest text-besa-white/40">VS</p>
+            <p class="text-[9px] text-besa-white/30 font-bold mt-0.5">10:00</p>
+          </div>
+          <div class="text-center flex-1">
+            <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+              alt="FC Besa" loading="lazy" class="h-9 mx-auto mb-1.5 opacity-90"/>
+            <p class="text-[9px] font-bold uppercase tracking-wider text-besa-white/70">FC Besa</p>
+          </div>
+        </div>
+        <div class="border-t border-white/[0.06] px-4 py-2.5 text-center">
+          <span class="text-[9px] font-bold tracking-[.15em] uppercase text-besa-white/30 group-hover:text-besa-red">Match Center →</span>
+        </div>
+      </article>
+
+      <!-- Match: 1. Mannschaft upcoming -->
+      <article class="flex-shrink-0 w-[220px] sm:w-[250px] bg-besa-black border border-white/[0.08] hover:border-white/20 cursor-pointer group">
+        <div class="px-4 pt-3.5 pb-2.5 border-b border-white/[0.06] flex items-center justify-between">
+          <span class="text-[9.5px] font-bold tracking-[.15em] uppercase text-besa-white/40">1. Mannschaft</span>
+          <span class="text-[9px] font-bold tracking-[.12em] uppercase text-besa-white/30">28. Apr</span>
+        </div>
+        <div class="px-4 py-4 flex items-center justify-between gap-2">
+          <div class="text-center flex-1">
+            <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+              alt="FC Besa" loading="lazy" class="h-9 mx-auto mb-1.5 opacity-90"/>
+            <p class="text-[9px] font-bold uppercase tracking-wider text-besa-white/70">FC Besa</p>
+          </div>
+          <div class="text-center px-2">
+            <p class="font-display text-[13px] tracking-widest text-besa-white/40">VS</p>
+            <p class="text-[9px] text-besa-white/30 font-bold mt-0.5">15:00</p>
+          </div>
+          <div class="text-center flex-1">
+            <div class="h-9 flex items-center justify-center mb-1.5">
+              <span class="ms text-besa-white/20" style="font-size:28px">sports_soccer</span>
+            </div>
+            <p class="text-[9px] font-bold uppercase tracking-wider text-besa-white/45">SC Brühl II</p>
+          </div>
+        </div>
+        <div class="border-t border-white/[0.06] px-4 py-2.5 text-center">
+          <span class="text-[9px] font-bold tracking-[.15em] uppercase text-besa-white/30 group-hover:text-besa-red">Match Center →</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     LATEST NEWS  (PSG: editorial grid – 1 featured + 3 sidebar)
+════════════════════════════════════════ -->
+<section class="py-12 sm:py-16 lg:py-20 bg-besa-black" aria-label="Letzte News">
+  <div class="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="flex items-center justify-between mb-7 sm:mb-9">
+      <div class="flex items-center gap-2.5">
+        <span class="sh-accent" aria-hidden="true"></span>
+        <h2 class="font-display text-2xl sm:text-3xl uppercase tracking-wider">Letzte News</h2>
+      </div>
+      <a href="#" class="flex items-center gap-1 text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/35 hover:text-besa-red">
+        Alle Artikel <span class="ms" style="font-size:14px">arrow_forward</span>
+      </a>
+    </div>
+
+    <!-- PSG-style grid: featured (L) + stacked sidebar (R) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+
+      <!-- ── FEATURED (spans 7 cols) ── -->
+      <article class="lg:col-span-7 group cursor-pointer relative overflow-hidden" style="aspect-ratio:16/10">
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLsW5fcw4E6gmfJXmx6_DPt7UIxTZonOMvAr7xmNJuvyS4_gQBUW3aQxFieRs39VsMs4OsNMEtZ5WgtwH_OkzgAFPvabXFLabf7yLYPuyxVTGGFKZseyaEDtdcJoWMLJqTjET-0o7grv_tavaOkOy7ywIlT1ZhKcXES63hvZPNbiXdIR-51EzYZiAkZuNmph4p7yyYNLP_LnKl-Ylvxn5tlgaKlHSxwEJdW-gvPZZ96E_B8zDEwxWDCCGuZn"
+          alt="FC Besa Mannschaft Topspiel Sieg" loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+        <!-- overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+        <!-- Category badge on image (PSG style) -->
+        <div class="absolute top-4 left-4">
+          <span class="cat-pill bg-besa-red text-white">Mannschaft</span>
+        </div>
+        <!-- Text at bottom -->
+        <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-7">
+          <h3 class="font-display text-[26px] sm:text-[34px] lg:text-[38px] uppercase leading-[.9] text-white group-hover:text-besa-gold transition-colors">
+            Starke Leistung im Topspiel: Kader-Zusammenhalt führt zum Sieg
+          </h3>
+          <p class="text-besa-white/50 text-sm leading-snug mt-2.5 max-w-lg line-clamp-2">
+            Das gesamte Team zeigte am vergangenen Wochenende eine geschlossene Leistung und sicherte drei wichtige Punkte.
           </p>
-          <div class="flex items-center gap-4">
-            <button class="bg-rubine-red text-white font-grotesk text-[11px] font-bold px-10 py-[14px] tracking-[0.25em] uppercase hover:bg-white hover:text-matte-black transition-all duration-300">
-              Jetzt Entdecken
-            </button>
-            <button class="border border-parisian-gold/40 text-parisian-gold font-grotesk text-[11px] font-bold px-10 py-[14px] tracking-[0.25em] uppercase hover:bg-parisian-gold/10 hover:border-parisian-gold/70 transition-all duration-300">
-              Verein Profil
-            </button>
+          <div class="flex items-center gap-3 mt-3">
+            <span class="text-besa-white/35 text-[10px] font-bold tracking-widest uppercase">Heute</span>
+            <span class="text-besa-white/20 text-xs">·</span>
+            <span class="text-besa-white/35 text-[10px] font-bold tracking-widest uppercase">Match Report</span>
           </div>
         </div>
-      </div>
+      </article>
 
-      <!-- Mobile layout -->
-      <div class="lg:hidden">
-        <p class="font-grotesk text-[9px] font-bold tracking-[0.35em] uppercase text-parisian-gold mb-3">FC Besa St. Gallen — Seit 1992</p>
-        <h1 class="font-bebas leading-[0.88] uppercase text-white mb-6" style="font-size:clamp(52px,14vw,86px)">
-          Mehr als<br/>ein Verein
-        </h1>
-        <p class="font-grotesk text-sm text-white/55 mb-7 max-w-xs leading-relaxed">
-          Tradition, Leidenschaft und Zusammenhalt.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-3">
-          <button class="bg-rubine-red text-white font-grotesk text-[11px] font-bold px-8 py-[14px] tracking-[0.25em] uppercase hover:bg-white hover:text-matte-black transition-all w-full sm:w-auto text-center">
-            Jetzt Entdecken
-          </button>
-          <button class="border border-parisian-gold/40 text-parisian-gold font-grotesk text-[11px] font-bold px-8 py-[14px] tracking-[0.25em] uppercase w-full sm:w-auto text-center hover:bg-parisian-gold/10 transition-all">
-            Verein Profil
-          </button>
-        </div>
+      <!-- ── SIDEBAR (spans 5 cols) ── -->
+      <div class="lg:col-span-5 flex flex-col gap-4 sm:gap-5">
+
+        <!-- News item 2 -->
+        <article class="flex gap-4 sm:gap-5 group cursor-pointer bg-card hover:bg-card-hover p-4 sm:p-5">
+          <div class="flex-shrink-0 w-[110px] sm:w-[130px] overflow-hidden relative" style="aspect-ratio:4/3">
+            <img src="https://lh3.googleusercontent.com/aida/AP1WRLvCQHPuNJbeK0Sfd2bxWEOP5JnfHYggH2jCOknBbVLd_i5z6i_zA4DoVRS9GwrDN0mnyQzATFulcIPJ56YSynE8mtwYdgOFsFOYesFTizA4nU-5ny13EUOO98JytMOPq9CTRcosw_dsdjhJBHsVQW5lGNjK-lF3yWGDz1NwgVQ7RMKVxrSiIU89JgVYy1MUSMuNCcJazvnO17jum2EGbM3eT4rjL3oUdVnHK__uL-AFjne-c8ceAZ7wvyV3"
+              alt="Torjubel Heimsieg" loading="lazy"
+              class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"/>
+            <div class="absolute top-2 left-2">
+              <span class="cat-pill bg-besa-red text-white" style="font-size:8px;padding:2px 6px">Match</span>
+            </div>
+          </div>
+          <div class="flex flex-col justify-center min-w-0">
+            <h4 class="font-display text-lg sm:text-xl uppercase leading-tight group-hover:text-besa-red transition-colors line-clamp-2">
+              Souveräner Heimsieg: 4:1 gegen RG17 II
+            </h4>
+            <span class="text-besa-white/30 text-[10px] font-bold tracking-widest uppercase mt-2">Vor 4 Stunden</span>
+          </div>
+        </article>
+
+        <!-- News item 3 -->
+        <article class="flex gap-4 sm:gap-5 group cursor-pointer bg-card hover:bg-card-hover p-4 sm:p-5">
+          <div class="flex-shrink-0 w-[110px] sm:w-[130px] overflow-hidden relative" style="aspect-ratio:4/3">
+            <img src="https://lh3.googleusercontent.com/aida/AP1WRLt2Ojz-q1bY-UMalk0Na6cvTb7QzRzj3I2SA585w3EgCi7Wu2zwR7vVFscU4LZnsQ3H1V9Rkf98oDsP21NW2AitR7HcPbbzdDhKkWq7EZqJUIzlnTFG9Be3R7XlepRukGjhAUgS-LMsKiFb02A2EoBvFfJ8JnMde56aHPmg9BGrjfxa0iST6ueuPlqwqhIu0sEN5UnmJ0d5fTWuJSM6IK9YTexMbtG3_36SvrmnCkOVOQEPPq8NGUQecib1"
+              alt="Eagles Cup 2024" loading="lazy"
+              class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"/>
+            <div class="absolute top-2 left-2">
+              <span class="cat-pill bg-besa-gold text-besa-black" style="font-size:8px;padding:2px 6px">Events</span>
+            </div>
+          </div>
+          <div class="flex flex-col justify-center min-w-0">
+            <h4 class="font-display text-lg sm:text-xl uppercase leading-tight group-hover:text-besa-red transition-colors line-clamp-2">
+              FC Roha Eagles Cup: Jetzt für das Hallenturnier anmelden
+            </h4>
+            <span class="text-besa-white/30 text-[10px] font-bold tracking-widest uppercase mt-2">Gestern</span>
+          </div>
+        </article>
+
+        <!-- News item 4 -->
+        <article class="flex gap-4 sm:gap-5 group cursor-pointer bg-card hover:bg-card-hover p-4 sm:p-5">
+          <div class="flex-shrink-0 w-[110px] sm:w-[130px] bg-besa-black/60 flex items-center justify-center border border-white/[0.06]" style="aspect-ratio:4/3">
+            <span class="ms text-besa-white/15" style="font-size:36px">sports_soccer</span>
+          </div>
+          <div class="flex flex-col justify-center min-w-0">
+            <h4 class="font-display text-lg sm:text-xl uppercase leading-tight group-hover:text-besa-red transition-colors line-clamp-2">
+              Werde Teil unserer C-Junioren Mannschaft
+            </h4>
+            <span class="text-besa-white/30 text-[10px] font-bold tracking-widest uppercase mt-2">Vor 2 Tagen</span>
+          </div>
+        </article>
+
       </div>
     </div>
-  </section>
 
-  <!-- ── SPIELPLAN ──────────────────────── -->
-  <section class="bg-matte-black py-10 sm:py-14" aria-label="Spielplan">
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
-      <div class="flex items-end justify-between mb-6 sm:mb-8">
-        <div>
-          <span class="font-grotesk text-[9px] font-bold tracking-[0.35em] text-parisian-gold uppercase block mb-1">Saison 2024/25</span>
-          <h2 class="font-bebas text-2xl sm:text-3xl uppercase tracking-wider">Spielplan</h2>
+    <!-- Second news row (PSG-style: 3 equal cards) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-4 sm:mt-5">
+
+      <article class="group cursor-pointer bg-card hover:bg-card-hover overflow-hidden">
+        <div class="relative overflow-hidden" style="aspect-ratio:16/9">
+          <img src="https://lh3.googleusercontent.com/aida/AP1WRLsW5fcw4E6gmfJXmx6_DPt7UIxTZonOMvAr7xmNJuvyS4_gQBUW3aQxFieRs39VsMs4OsNMEtZ5WgtwH_OkzgAFPvabXFLabf7yLYPuyxVTGGFKZseyaEDtdcJoWMLJqTjET-0o7grv_tavaOkOy7ywIlT1ZhKcXES63hvZPNbiXdIR-51EzYZiAkZuNmph4p7yyYNLP_LnKl-Ylvxn5tlgaKlHSxwEJdW-gvPZZ96E_B8zDEwxWDCCGuZn"
+            alt="Espen Girls" loading="lazy"
+            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"/>
+          <div class="absolute top-3 left-3">
+            <span class="cat-pill bg-besa-red text-white" style="font-size:8px;padding:2px 6px">Espen Girls</span>
+          </div>
         </div>
-        <div class="flex gap-2">
-          <button aria-label="Vorherige Spiele" class="w-10 h-10 sm:w-11 sm:h-11 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors">
-            <span class="material-symbols-outlined" style="font-size:18px">chevron_left</span>
-          </button>
-          <button aria-label="Nächste Spiele" class="w-10 h-10 sm:w-11 sm:h-11 border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors">
-            <span class="material-symbols-outlined" style="font-size:18px">chevron_right</span>
-          </button>
+        <div class="p-4">
+          <h4 class="font-display text-xl uppercase leading-tight group-hover:text-besa-red transition-colors">Espen Girls starten stark in die Rückrunde</h4>
+          <span class="text-besa-white/30 text-[10px] font-bold tracking-widest uppercase mt-2 block">Vor 3 Tagen</span>
         </div>
-      </div>
+      </article>
 
-      <!-- Cards scroll -->
-      <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2 -mx-4 sm:mx-0 px-4 sm:px-0">
+      <article class="group cursor-pointer bg-card hover:bg-card-hover overflow-hidden">
+        <div class="relative overflow-hidden" style="aspect-ratio:16/9">
+          <img src="https://lh3.googleusercontent.com/aida/AP1WRLvCQHPuNJbeK0Sfd2bxWEOP5JnfHYggH2jCOknBbVLd_i5z6i_zA4DoVRS9GwrDN0mnyQzATFulcIPJ56YSynE8mtwYdgOFsFOYesFTizA4nU-5ny13EUOO98JytMOPq9CTRcosw_dsdjhJBHsVQW5lGNjK-lF3yWGDz1NwgVQ7RMKVxrSiIU89JgVYy1MUSMuNCcJazvnO17jum2EGbM3eT4rjL3oUdVnHK__uL-AFjne-c8ceAZ7wvyV3"
+            alt="Verein" loading="lazy"
+            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"/>
+          <div class="absolute top-3 left-3">
+            <span class="cat-pill bg-besa-gold text-besa-black" style="font-size:8px;padding:2px 6px">Verein</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <h4 class="font-display text-xl uppercase leading-tight group-hover:text-besa-red transition-colors">Mitgliederversammlung 2024: Alle Infos</h4>
+          <span class="text-besa-white/30 text-[10px] font-bold tracking-widest uppercase mt-2 block">Vor 5 Tagen</span>
+        </div>
+      </article>
 
-        <!-- Card: Upcoming -->
-        <article class="min-w-[268px] sm:min-w-[320px] flex-shrink-0 glass border border-parisian-gold/20 p-5 hover:border-parisian-gold/40 transition-all cursor-pointer group">
-          <div class="flex justify-between items-center mb-5">
-            <span class="font-grotesk text-[9px] font-bold text-white/40 tracking-[0.18em] uppercase">2. Liga Regional</span>
-            <span class="font-grotesk text-[9px] font-bold text-rubine-red tracking-[0.18em] uppercase bg-rubine-red/10 px-2 py-0.5">Demnächst</span>
+      <article class="group cursor-pointer bg-card hover:bg-card-hover overflow-hidden">
+        <div class="relative bg-besa-red/10 flex items-center justify-center" style="aspect-ratio:16/9">
+          <span class="ms text-besa-red/20" style="font-size:56px">groups</span>
+          <div class="absolute top-3 left-3">
+            <span class="cat-pill bg-besa-white/10 text-besa-white" style="font-size:8px;padding:2px 6px">Sponsoring</span>
           </div>
-          <div class="flex justify-between items-center mb-5">
-            <div class="text-center w-[70px]">
-              <img alt="FC Besa Logo" loading="lazy" class="h-9 mx-auto mb-1.5 opacity-90" src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"/>
-              <p class="font-grotesk text-[9px] font-bold uppercase tracking-wider">FC Besa</p>
-            </div>
-            <div class="text-center flex-1 border-x border-white/5 mx-2 px-2">
-              <p class="font-bebas text-xl tracking-widest">VS</p>
-              <p class="font-grotesk text-[9px] text-white/40 mt-0.5">14.04 · 16:00</p>
-              <p class="font-grotesk text-[8px] text-white/30 mt-0.5 uppercase tracking-wider">Espenmoos</p>
-            </div>
-            <div class="text-center w-[70px]">
-              <div class="h-9 flex items-center justify-center mb-1.5">
-                <span class="material-symbols-outlined text-white/20" style="font-size:28px">sports_soccer</span>
-              </div>
-              <p class="font-grotesk text-[9px] font-bold uppercase tracking-wider text-white/45">FC Arbon</p>
-            </div>
-          </div>
-          <div class="pt-3.5 border-t border-white/5 text-center">
-            <span class="font-grotesk text-[9px] font-bold tracking-[0.18em] uppercase text-white/40 group-hover:text-parisian-gold transition-colors">Match Center →</span>
-          </div>
-        </article>
+        </div>
+        <div class="p-4">
+          <h4 class="font-display text-xl uppercase leading-tight group-hover:text-besa-red transition-colors">Neue Partner für die Saison 2024/25</h4>
+          <span class="text-besa-white/30 text-[10px] font-bold tracking-widest uppercase mt-2 block">Vor 1 Woche</span>
+        </div>
+      </article>
 
-        <!-- Card: Result Win -->
-        <article class="min-w-[268px] sm:min-w-[320px] flex-shrink-0 glass border border-white/5 p-5 hover:border-white/10 transition-all cursor-pointer group">
-          <div class="flex justify-between items-center mb-5">
-            <span class="font-grotesk text-[9px] font-bold text-white/40 tracking-[0.18em] uppercase">2. Liga Regional</span>
-            <span class="font-grotesk text-[9px] font-bold text-parisian-gold tracking-[0.18em] uppercase">Gestern</span>
-          </div>
-          <div class="flex justify-between items-center mb-5">
-            <div class="text-center w-[70px]">
-              <img alt="FC Besa Logo" loading="lazy" class="h-9 mx-auto mb-1.5 opacity-90" src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"/>
-              <p class="font-grotesk text-[9px] font-bold uppercase tracking-wider">FC Besa</p>
-            </div>
-            <div class="text-center flex-1 mx-2 px-2">
-              <p class="font-bebas text-3xl text-rubine-red leading-none">4 : 1</p>
-              <span class="inline-block mt-1 font-grotesk text-[8px] font-bold uppercase tracking-widest text-parisian-gold bg-parisian-gold/10 px-2 py-0.5">Sieg</span>
-            </div>
-            <div class="text-center w-[70px]">
-              <div class="h-9 flex items-center justify-center mb-1.5">
-                <span class="material-symbols-outlined text-white/20" style="font-size:28px">sports_soccer</span>
-              </div>
-              <p class="font-grotesk text-[9px] font-bold uppercase tracking-wider text-white/45">FC RG17 II</p>
-            </div>
-          </div>
-          <div class="pt-3.5 border-t border-white/5 text-center">
-            <span class="font-grotesk text-[9px] font-bold tracking-[0.18em] uppercase text-white/40 group-hover:text-rubine-red transition-colors">Matchbericht →</span>
-          </div>
-        </article>
-
-        <!-- Card: Junior -->
-        <article class="min-w-[268px] sm:min-w-[320px] flex-shrink-0 glass border border-white/5 p-5 hover:border-white/10 transition-all cursor-pointer group">
-          <div class="flex justify-between items-center mb-5">
-            <span class="font-grotesk text-[9px] font-bold text-white/40 tracking-[0.18em] uppercase">C-Junioren</span>
-            <span class="font-grotesk text-[9px] font-bold text-white/40 tracking-[0.18em] uppercase">21. Apr</span>
-          </div>
-          <div class="flex justify-between items-center mb-5">
-            <div class="text-center w-[70px]">
-              <div class="h-9 flex items-center justify-center mb-1.5">
-                <span class="material-symbols-outlined text-white/20" style="font-size:28px">sports_soccer</span>
-              </div>
-              <p class="font-grotesk text-[9px] font-bold uppercase tracking-wider text-white/45">FC Wittenbach</p>
-            </div>
-            <div class="text-center flex-1 border-x border-white/5 mx-2 px-2">
-              <p class="font-bebas text-xl tracking-widest">VS</p>
-              <p class="font-grotesk text-[9px] text-white/40 mt-0.5">10:00</p>
-            </div>
-            <div class="text-center w-[70px]">
-              <img alt="FC Besa Logo" loading="lazy" class="h-9 mx-auto mb-1.5 opacity-90" src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"/>
-              <p class="font-grotesk text-[9px] font-bold uppercase tracking-wider">FC Besa</p>
-            </div>
-          </div>
-          <div class="pt-3.5 border-t border-white/5 text-center">
-            <span class="font-grotesk text-[9px] font-bold tracking-[0.18em] uppercase text-white/40 group-hover:text-parisian-gold transition-colors">Match Center →</span>
-          </div>
-        </article>
-
-        <!-- Card: Upcoming 2 -->
-        <article class="min-w-[268px] sm:min-w-[320px] flex-shrink-0 glass border border-white/5 p-5 hover:border-white/10 transition-all cursor-pointer group">
-          <div class="flex justify-between items-center mb-5">
-            <span class="font-grotesk text-[9px] font-bold text-white/40 tracking-[0.18em] uppercase">1. Mannschaft</span>
-            <span class="font-grotesk text-[9px] font-bold text-white/40 tracking-[0.18em] uppercase">28. Apr</span>
-          </div>
-          <div class="flex justify-between items-center mb-5">
-            <div class="text-center w-[70px]">
-              <img alt="FC Besa Logo" loading="lazy" class="h-9 mx-auto mb-1.5 opacity-90" src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"/>
-              <p class="font-grotesk text-[9px] font-bold uppercase tracking-wider">FC Besa</p>
-            </div>
-            <div class="text-center flex-1 border-x border-white/5 mx-2 px-2">
-              <p class="font-bebas text-xl tracking-widest">VS</p>
-              <p class="font-grotesk text-[9px] text-white/40 mt-0.5">15:00</p>
-              <p class="font-grotesk text-[8px] text-white/30 mt-0.5 uppercase tracking-wider">Auswärts</p>
-            </div>
-            <div class="text-center w-[70px]">
-              <div class="h-9 flex items-center justify-center mb-1.5">
-                <span class="material-symbols-outlined text-white/20" style="font-size:28px">sports_soccer</span>
-              </div>
-              <p class="font-grotesk text-[9px] font-bold uppercase tracking-wider text-white/45">SC Brühl II</p>
-            </div>
-          </div>
-          <div class="pt-3.5 border-t border-white/5 text-center">
-            <span class="font-grotesk text-[9px] font-bold tracking-[0.18em] uppercase text-white/40 group-hover:text-parisian-gold transition-colors">Match Center →</span>
-          </div>
-        </article>
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ── NEWS ──────────────────────────── -->
-  <section class="py-16 sm:py-20 lg:py-24 bg-matte-black" aria-label="News">
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
-      <div class="flex items-end justify-between mb-10 sm:mb-12">
-        <div>
-          <span class="font-grotesk text-[9px] font-bold tracking-[0.35em] text-rubine-red uppercase block mb-1.5">Aktuelles</span>
-          <h2 class="font-bebas text-4xl sm:text-5xl uppercase">Letzte News</h2>
-        </div>
-        <a href="#" class="hidden sm:block font-grotesk text-[9px] font-bold tracking-[0.2em] uppercase border-b border-white/20 pb-1 hover:text-rubine-red hover:border-rubine-red transition-all">
-          Alle Artikel →
-        </a>
+<!-- ════════════════════════════════════
+     BESA TV  (PSG TV style: clean grid)
+════════════════════════════════════════ -->
+<section class="py-12 sm:py-16 lg:py-20 bg-card" aria-label="Besa TV">
+  <div class="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex items-center justify-between mb-7 sm:mb-9">
+      <div class="flex items-center gap-2.5">
+        <span class="sh-accent" aria-hidden="true"></span>
+        <h2 class="font-display text-2xl sm:text-3xl uppercase tracking-wider">Besa TV</h2>
       </div>
+      <a href="#" class="flex items-center gap-1 text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/35 hover:text-besa-red">
+        Alle Videos <span class="ms" style="font-size:14px">arrow_forward</span>
+      </a>
+    </div>
 
-      <!-- Grid: featured + sidebar -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5">
 
-        <!-- Featured -->
-        <div class="lg:col-span-7 group cursor-pointer">
-          <div class="relative overflow-hidden mb-4" style="aspect-ratio:16/10">
-            <img alt="FC Besa Teamfoto nach dem Sieg" loading="lazy"
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              src="https://lh3.googleusercontent.com/aida/AP1WRLsW5fcw4E6gmfJXmx6_DPt7UIxTZonOMvAr7xmNJuvyS4_gQBUW3aQxFieRs39VsMs4OsNMEtZ5WgtwH_OkzgAFPvabXFLabf7yLYPuyxVTGGFKZseyaEDtdcJoWMLJqTjET-0o7grv_tavaOkOy7ywIlT1ZhKcXES63hvZPNbiXdIR-51EzYZiAkZuNmph4p7yyYNLP_LnKl-Ylvxn5tlgaKlHSxwEJdW-gvPZZ96E_B8zDEwxWDCCGuZn"/>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
-            <div class="absolute bottom-6 sm:bottom-8 left-5 sm:left-8 right-5 sm:right-8">
-              <span class="bg-rubine-red text-white font-grotesk text-[9px] font-bold px-3 py-1 tracking-widest mb-3 inline-block uppercase">Mannschaft</span>
-              <h3 class="font-bebas text-3xl sm:text-4xl lg:text-[42px] uppercase leading-tight group-hover:text-rubine-red transition-colors duration-300">
-                Starke Leistung im Topspiel: Kader&#8209;Zusammenhalt führt zum Sieg
-              </h3>
-              <p class="font-grotesk text-sm text-white/55 mt-3 leading-relaxed max-w-lg line-clamp-2 sm:line-clamp-3">
-                Das gesamte Team zeigte am vergangenen Wochenende eine geschlossene Mannschaftsleistung und sicherte sich drei wichtige Punkte gegen den direkten Konkurrenten.
-              </p>
+      <article class="group cursor-pointer">
+        <div class="relative overflow-hidden" style="aspect-ratio:16/9">
+          <img src="https://lh3.googleusercontent.com/aida/AP1WRLvCQHPuNJbeK0Sfd2bxWEOP5JnfHYggH2jCOknBbVLd_i5z6i_zA4DoVRS9GwrDN0mnyQzATFulcIPJ56YSynE8mtwYdgOFsFOYesFTizA4nU-5ny13EUOO98JytMOPq9CTRcosw_dsdjhJBHsVQW5lGNjK-lF3yWGDz1NwgVQ7RMKVxrSiIU89JgVYy1MUSMuNCcJazvnO17jum2EGbM3eT4rjL3oUdVnHK__uL-AFjne-c8ceAZ7wvyV3"
+            alt="Tore vom Wochenende" loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"/>
+          <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/10 transition-all">
+            <div class="w-10 h-10 bg-besa-red flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+              <span class="ms text-white" style="font-size:18px;font-variation-settings:'FILL' 1">play_arrow</span>
             </div>
           </div>
+          <span class="absolute bottom-2 right-2 bg-black/75 text-white text-[9px] font-bold px-1.5 py-0.5 font-body">03:45</span>
+          <div class="absolute top-2 left-2">
+            <span class="cat-pill bg-besa-red text-white" style="font-size:8px;padding:2px 6px">Highlights</span>
+          </div>
         </div>
+        <h5 class="font-display text-base sm:text-lg uppercase mt-2.5 leading-tight group-hover:text-besa-red transition-colors">Alle Tore vom Wochenende</h5>
+      </article>
 
-        <!-- Sidebar news -->
-        <div class="lg:col-span-5 flex flex-col gap-0 divide-y divide-white/5">
+      <article class="group cursor-pointer">
+        <div class="relative overflow-hidden" style="aspect-ratio:16/9">
+          <img src="https://lh3.googleusercontent.com/aida/AP1WRLsW5fcw4E6gmfJXmx6_DPt7UIxTZonOMvAr7xmNJuvyS4_gQBUW3aQxFieRs39VsMs4OsNMEtZ5WgtwH_OkzgAFPvabXFLabf7yLYPuyxVTGGFKZseyaEDtdcJoWMLJqTjET-0o7grv_tavaOkOy7ywIlT1ZhKcXES63hvZPNbiXdIR-51EzYZiAkZuNmph4p7yyYNLP_LnKl-Ylvxn5tlgaKlHSxwEJdW-gvPZZ96E_B8zDEwxWDCCGuZn"
+            alt="Trainer Interview" loading="lazy"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-600"/>
+          <div class="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/10 transition-all">
+            <div class="w-10 h-10 bg-besa-red flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+              <span class="ms text-white" style="font-size:18px;font-variation-settings:'FILL' 1">play_arrow</span>
+            </div>
+          </div>
+          <span class="absolute bottom-2 right-2 bg-black/75 text-white text-[9px] font-bold px-1.5 py-0.5 font-body">12:10</span>
+          <div class="absolute top-2 left-2">
+            <span class="cat-pill bg-besa-white/10 text-besa-white" style="font-size:8px;padding:2px 6px">Interview</span>
+          </div>
+        </div>
+        <h5 class="font-display text-base sm:text-lg uppercase mt-2.5 leading-tight group-hover:text-besa-red transition-colors">Trainer-Talk nach dem Heimsieg</h5>
+      </article>
 
-          <!-- Item 1 -->
-          <article class="flex gap-4 group cursor-pointer py-5 first:pt-0 lg:first:pt-5">
-            <div class="w-[100px] sm:w-[110px] aspect-[4/3] overflow-hidden flex-shrink-0">
-              <img alt="Torjubel beim Heimsieg" loading="lazy"
-                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100"
-                src="https://lh3.googleusercontent.com/aida/AP1WRLvCQHPuNJbeK0Sfd2bxWEOP5JnfHYggH2jCOknBbVLd_i5z6i_zA4DoVRS9GwrDN0mnyQzATFulcIPJ56YSynE8mtwYdgOFsFOYesFTizA4nU-5ny13EUOO98JytMOPq9CTRcosw_dsdjhJBHsVQW5lGNjK-lF3yWGDz1NwgVQ7RMKVxrSiIU89JgVYy1MUSMuNCcJazvnO17jum2EGbM3eT4rjL3oUdVnHK__uL-AFjne-c8ceAZ7wvyV3"/>
+      <article class="group cursor-pointer">
+        <div class="relative overflow-hidden bg-besa-black/60 flex items-center justify-center" style="aspect-ratio:16/9">
+          <span class="ms text-besa-white/8" style="font-size:44px">movie</span>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-10 h-10 bg-besa-red flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+              <span class="ms text-white" style="font-size:18px;font-variation-settings:'FILL' 1">play_arrow</span>
             </div>
-            <div class="flex flex-col justify-center">
-              <span class="font-grotesk text-[9px] font-bold text-white/35 tracking-[0.18em] uppercase mb-1.5">Match Report</span>
-              <h4 class="font-bebas text-lg sm:text-xl uppercase leading-tight group-hover:text-rubine-red transition-colors">
-                Souveräner Heimsieg: 4:1 gegen RG17 II
-              </h4>
-              <p class="font-grotesk text-[9px] text-white/30 mt-2 uppercase tracking-wider">Vor 4 Stunden</p>
-            </div>
-          </article>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="cat-pill bg-besa-gold text-besa-black" style="font-size:8px;padding:2px 6px">BTS</span>
+          </div>
+        </div>
+        <h5 class="font-display text-base sm:text-lg uppercase mt-2.5 leading-tight group-hover:text-besa-red transition-colors">Ein Tag mit der 1. Mannschaft</h5>
+      </article>
 
-          <!-- Item 2 -->
-          <article class="flex gap-4 group cursor-pointer py-5">
-            <div class="w-[100px] sm:w-[110px] aspect-[4/3] overflow-hidden flex-shrink-0">
-              <img alt="FC Roha Eagles Cup 2024 Turnier" loading="lazy"
-                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100"
-                src="https://lh3.googleusercontent.com/aida/AP1WRLt2Ojz-q1bY-UMalk0Na6cvTb7QzRzj3I2SA585w3EgCi7Wu2zwR7vVFscU4LZnsQ3H1V9Rkf98oDsP21NW2AitR7HcPbbzdDhKkWq7EZqJUIzlnTFG9Be3R7XlepRukGjhAUgS-LMsKiFb02A2EoBvFfJ8JnMde56aHPmg9BGrjfxa0iST6ueuPlqwqhIu0sEN5UnmJ0d5fTWuJSM6IK9YTexMbtG3_36SvrmnCkOVOQEPPq8NGUQecib1"/>
+      <article class="group cursor-pointer">
+        <div class="relative overflow-hidden bg-besa-black/60 flex items-center justify-center" style="aspect-ratio:16/9">
+          <span class="ms text-besa-white/8" style="font-size:44px">stadium</span>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-10 h-10 bg-besa-red flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+              <span class="ms text-white" style="font-size:18px;font-variation-settings:'FILL' 1">play_arrow</span>
             </div>
-            <div class="flex flex-col justify-center">
-              <span class="font-grotesk text-[9px] font-bold text-white/35 tracking-[0.18em] uppercase mb-1.5">Events</span>
-              <h4 class="font-bebas text-lg sm:text-xl uppercase leading-tight group-hover:text-rubine-red transition-colors">
-                FC Roha Eagles Cup: Jetzt für das Hallenturnier anmelden
-              </h4>
-              <p class="font-grotesk text-[9px] text-white/30 mt-2 uppercase tracking-wider">Gestern</p>
-            </div>
-          </article>
+          </div>
+          <div class="absolute top-2 left-2">
+            <span class="cat-pill bg-besa-white/10 text-besa-white" style="font-size:8px;padding:2px 6px">Club</span>
+          </div>
+        </div>
+        <h5 class="font-display text-base sm:text-lg uppercase mt-2.5 leading-tight group-hover:text-besa-red transition-colors">Espenmoos — Unsere Heimat</h5>
+      </article>
 
-          <!-- Item 3 -->
-          <article class="flex gap-4 group cursor-pointer py-5">
-            <div class="w-[100px] sm:w-[110px] aspect-[4/3] bg-surface-container flex items-center justify-center flex-shrink-0 border border-white/5">
-              <span class="material-symbols-outlined text-white/15" style="font-size:32px">sports_soccer</span>
-            </div>
-            <div class="flex flex-col justify-center">
-              <span class="font-grotesk text-[9px] font-bold text-white/35 tracking-[0.18em] uppercase mb-1.5">Junioren</span>
-              <h4 class="font-bebas text-lg sm:text-xl uppercase leading-tight group-hover:text-rubine-red transition-colors">
-                Wir suchen Dich: Werde Teil unserer C-Junioren
-              </h4>
-              <p class="font-grotesk text-[9px] text-white/30 mt-2 uppercase tracking-wider">Vor 2 Tagen</p>
-            </div>
-          </article>
+    </div>
+  </div>
+</section>
 
-          <!-- Mobile: view all -->
-          <div class="pt-5 sm:hidden">
-            <a href="#" class="font-grotesk text-[9px] font-bold tracking-[0.2em] uppercase border-b border-white/20 pb-1 hover:text-rubine-red hover:border-rubine-red transition-all">
-              Alle Artikel ansehen →
+<!-- ════════════════════════════════════
+     TEAMS  (PSG-style: tab navigation, like Hommes / Femmes / Handball)
+════════════════════════════════════════ -->
+<section class="py-12 sm:py-16 lg:py-20 bg-besa-black" aria-label="Teams">
+  <div class="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="flex items-center gap-2.5 mb-6">
+      <span class="sh-accent" aria-hidden="true"></span>
+      <h2 class="font-display text-2xl sm:text-3xl uppercase tracking-wider">Unsere Teams</h2>
+    </div>
+
+    <!-- PSG-style tabs -->
+    <div class="flex gap-0 border-b border-white/[0.08] mb-8 overflow-x-auto no-sb">
+      <button class="tab-btn active flex-shrink-0 px-5 sm:px-7 py-3 text-[11px] font-bold tracking-[.14em] uppercase border-b-2 border-transparent text-besa-white/50 hover:text-besa-white transition-colors"
+        onclick="setTab(this,'tab-1m')">1. Mannschaft</button>
+      <button class="tab-btn flex-shrink-0 px-5 sm:px-7 py-3 text-[11px] font-bold tracking-[.14em] uppercase border-b-2 border-transparent text-besa-white/50 hover:text-besa-white transition-colors"
+        onclick="setTab(this,'tab-jr')">Junioren</button>
+      <button class="tab-btn flex-shrink-0 px-5 sm:px-7 py-3 text-[11px] font-bold tracking-[.14em] uppercase border-b-2 border-transparent text-besa-white/50 hover:text-besa-white transition-colors"
+        onclick="setTab(this,'tab-eg')">Espen Girls</button>
+    </div>
+
+    <!-- Tab panes -->
+    <div id="tab-1m" class="tab-pane">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
+        <!-- Left: big image -->
+        <div class="lg:col-span-6 relative overflow-hidden group cursor-pointer" style="min-height:300px">
+          <img src="https://lh3.googleusercontent.com/aida/AP1WRLsRAimsdEnesSUO0HBBtHQDKy3rQjjN-P_Iu-7w6f7-OqZ9oLWF2w0U7C5mvHOi3JhE-vvjGFAUKqyDlPISq9u2-nvo9opQxdhQhr3sqCczW4V6oO-03EV9atS5OeKRK35hM6trvmhacOUtUT_i-13BYPt0FZr6LvLX_zDKa0vuA_vmcDAiocyNmWMFzIhFSXMZW-toQDRj4_Zlf4k0zPXoadYGyTa9z2wOjRROTd82KfAcueblM7spaIAm"
+            alt="1. Mannschaft FC Besa" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" style="min-height:300px"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 sm:p-8">
+            <span class="cat-pill bg-besa-red text-white mb-3">2. Liga Regional</span>
+            <h3 class="font-display text-3xl sm:text-4xl uppercase text-white leading-tight">1. Mannschaft</h3>
+            <p class="text-besa-white/55 text-sm mt-2 leading-relaxed">Seit 1992 der Stolz von St. Gallen im schweizerischen Amateursfussball.</p>
+            <a href="#" class="mt-4 inline-flex items-center gap-2 text-[10px] font-bold tracking-[.18em] uppercase text-besa-white/50 hover:text-besa-red">
+              Zum Kader <span class="ms" style="font-size:14px">arrow_forward</span>
             </a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── BESA TV ────────────────────────── -->
-  <section class="py-16 sm:py-20 lg:py-24 bg-surface-container-lowest" aria-label="Besa TV">
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
-      <div class="flex items-end justify-between mb-8 sm:mb-10">
-        <h2 class="font-bebas text-2xl sm:text-3xl uppercase tracking-wider border-l-4 border-rubine-red pl-5">Besa TV</h2>
-        <a href="#" class="hidden sm:block font-grotesk text-[9px] font-bold tracking-[0.2em] uppercase border-b border-white/20 pb-1 hover:text-rubine-red hover:border-rubine-red transition-all">
-          Alle Videos →
-        </a>
-      </div>
-
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-
-        <!-- Video 1 -->
-        <article class="group cursor-pointer">
-          <div class="relative overflow-hidden mb-3 border border-white/5 aspect-video">
-            <img alt="Highlights vom Wochenende" loading="lazy"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              src="https://lh3.googleusercontent.com/aida/AP1WRLvCQHPuNJbeK0Sfd2bxWEOP5JnfHYggH2jCOknBbVLd_i5z6i_zA4DoVRS9GwrDN0mnyQzATFulcIPJ56YSynE8mtwYdgOFsFOYesFTizA4nU-5ny13EUOO98JytMOPq9CTRcosw_dsdjhJBHsVQW5lGNjK-lF3yWGDz1NwgVQ7RMKVxrSiIU89JgVYy1MUSMuNCcJazvnO17jum2EGbM3eT4rjL3oUdVnHK__uL-AFjne-c8ceAZ7wvyV3"/>
-            <div class="absolute inset-0 bg-black/25 flex items-center justify-center group-hover:bg-black/5 transition-all">
-              <div class="w-11 h-11 rounded-full bg-rubine-red flex items-center justify-center scale-90 group-hover:scale-100 transition-transform shadow-lg">
-                <span class="material-symbols-outlined text-white" style="font-size:20px;font-variation-settings:'FILL' 1">play_arrow</span>
-              </div>
-            </div>
-            <span class="absolute bottom-2 right-2 bg-black/70 text-white font-grotesk text-[9px] font-bold px-1.5 py-0.5">03:45</span>
+        <!-- Right: stats + info -->
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-5">
+          <div class="bg-card p-5 sm:p-6 border border-white/[0.06]">
+            <p class="font-display text-5xl sm:text-6xl text-besa-red leading-none">4</p>
+            <p class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/40 mt-1">Siege zuletzt</p>
+            <p class="text-sm text-besa-white/60 mt-3 leading-relaxed">Starke Form in der Rückrunde der 2. Liga Regional.</p>
           </div>
-          <span class="font-grotesk text-[9px] font-bold text-rubine-red uppercase tracking-wider">Highlights</span>
-          <h5 class="font-bebas text-base sm:text-lg uppercase mt-1 leading-tight group-hover:text-white/70 transition-colors">Alle Tore vom Wochenende</h5>
-        </article>
-
-        <!-- Video 2 -->
-        <article class="group cursor-pointer">
-          <div class="relative overflow-hidden mb-3 border border-white/5 aspect-video">
-            <img alt="Interview mit dem Trainer" loading="lazy"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              src="https://lh3.googleusercontent.com/aida/AP1WRLsW5fcw4E6gmfJXmx6_DPt7UIxTZonOMvAr7xmNJuvyS4_gQBUW3aQxFieRs39VsMs4OsNMEtZ5WgtwH_OkzgAFPvabXFLabf7yLYPuyxVTGGFKZseyaEDtdcJoWMLJqTjET-0o7grv_tavaOkOy7ywIlT1ZhKcXES63hvZPNbiXdIR-51EzYZiAkZuNmph4p7yyYNLP_LnKl-Ylvxn5tlgaKlHSxwEJdW-gvPZZ96E_B8zDEwxWDCCGuZn"/>
-            <div class="absolute inset-0 bg-black/25 flex items-center justify-center group-hover:bg-black/5 transition-all">
-              <div class="w-11 h-11 rounded-full bg-rubine-red flex items-center justify-center scale-90 group-hover:scale-100 transition-transform shadow-lg">
-                <span class="material-symbols-outlined text-white" style="font-size:20px;font-variation-settings:'FILL' 1">play_arrow</span>
-              </div>
-            </div>
-            <span class="absolute bottom-2 right-2 bg-black/70 text-white font-grotesk text-[9px] font-bold px-1.5 py-0.5">12:10</span>
+          <div class="bg-card p-5 sm:p-6 border border-white/[0.06]">
+            <p class="font-display text-5xl sm:text-6xl text-besa-gold leading-none">18</p>
+            <p class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/40 mt-1">Torerfolge</p>
+            <p class="text-sm text-besa-white/60 mt-3 leading-relaxed">Tore erzielt in der laufenden Saison.</p>
           </div>
-          <span class="font-grotesk text-[9px] font-bold text-rubine-red uppercase tracking-wider">Interview</span>
-          <h5 class="font-bebas text-base sm:text-lg uppercase mt-1 leading-tight group-hover:text-white/70 transition-colors">Trainer-Talk nach dem Heimsieg</h5>
-        </article>
-
-        <!-- Video 3 -->
-        <article class="group cursor-pointer">
-          <div class="relative overflow-hidden mb-3 border border-white/5 aspect-video bg-surface-container">
-            <div class="w-full h-full flex items-center justify-center">
-              <span class="material-symbols-outlined text-white/8" style="font-size:48px">movie</span>
-            </div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-11 h-11 rounded-full bg-rubine-red flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <span class="material-symbols-outlined text-white" style="font-size:20px;font-variation-settings:'FILL' 1">play_arrow</span>
+          <div class="col-span-2 bg-card p-5 sm:p-6 border border-white/[0.06]">
+            <p class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/40 mb-3">Nächstes Spiel</p>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+                  alt="FC Besa" class="h-8 w-auto opacity-80"/>
+                <span class="font-body text-sm font-semibold">FC Besa</span>
+              </div>
+              <div class="text-center">
+                <p class="font-display text-xl text-besa-white/50">VS</p>
+                <p class="text-[10px] font-bold text-besa-gold">14.04 · 16:00</p>
+              </div>
+              <div class="text-right">
+                <span class="font-body text-sm font-semibold text-besa-white/55">FC Arbon</span>
+                <p class="text-[10px] text-besa-white/30 mt-0.5">Espenmoos</p>
               </div>
             </div>
           </div>
-          <span class="font-grotesk text-[9px] font-bold text-rubine-red uppercase tracking-wider">Behind the scenes</span>
-          <h5 class="font-bebas text-base sm:text-lg uppercase mt-1 leading-tight group-hover:text-white/70 transition-colors">Ein Tag mit der ersten Mannschaft</h5>
-        </article>
-
-        <!-- Video 4 -->
-        <article class="group cursor-pointer">
-          <div class="relative overflow-hidden mb-3 border border-white/5 aspect-video bg-surface-container">
-            <div class="w-full h-full flex items-center justify-center">
-              <span class="material-symbols-outlined text-white/8" style="font-size:48px">stadium</span>
-            </div>
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-11 h-11 rounded-full bg-rubine-red flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <span class="material-symbols-outlined text-white" style="font-size:20px;font-variation-settings:'FILL' 1">play_arrow</span>
-              </div>
-            </div>
-          </div>
-          <span class="font-grotesk text-[9px] font-bold text-rubine-red uppercase tracking-wider">Club</span>
-          <h5 class="font-bebas text-base sm:text-lg uppercase mt-1 leading-tight group-hover:text-white/70 transition-colors">Espenmoos — Unsere Heimat</h5>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── ENGAGEMENT & COMMUNITY ────────── -->
-  <section class="py-16 sm:py-20 lg:py-24 bg-matte-black" aria-label="Engagement und Gemeinschaft">
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
-      <div class="text-center mb-12 sm:mb-16">
-        <span class="font-grotesk text-[9px] font-bold tracking-[0.35em] text-parisian-gold uppercase block mb-2">Mehr als Fussball</span>
-        <h2 class="font-bebas text-4xl sm:text-5xl uppercase">Engagement &amp; Gemeinschaft</h2>
-      </div>
-
-      <!-- Cards grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-
-        <!-- Card: Integration -->
-        <article class="relative overflow-hidden group cursor-pointer" style="min-height:400px">
-          <div class="absolute inset-0 bg-surface-container flex items-center justify-center">
-            <span class="font-bebas text-[160px] sm:text-[180px] text-white/[0.03] leading-none select-none">BESA</span>
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-rubine-red/95 via-rubine-red/40 to-transparent flex flex-col justify-end p-7 sm:p-9">
-            <span class="font-grotesk text-[9px] font-bold tracking-[0.3em] uppercase text-white/60 mb-2">Soziales Engagement</span>
-            <h3 class="font-bebas text-3xl sm:text-4xl uppercase mb-3 leading-tight">Integration durch Sport</h3>
-            <p class="font-grotesk text-sm text-white/80 mb-5 leading-relaxed">Wie der FC Besa junge Menschen in St. Gallen verbindet und fördert.</p>
-            <button class="w-fit font-grotesk text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white pb-0.5 hover:text-parisian-gold hover:border-parisian-gold transition-colors">
-              Mehr erfahren
-            </button>
-          </div>
-        </article>
-
-        <!-- Card: Espen Girls -->
-        <article class="relative overflow-hidden group cursor-pointer border border-white/5 hover:border-white/10 transition-colors" style="min-height:400px">
-          <img alt="Espen Girls Mädchenfussball" loading="lazy"
-            class="absolute inset-0 w-full h-full object-cover opacity-45 group-hover:opacity-70 transition-all duration-700 scale-105 group-hover:scale-100"
-            src="https://lh3.googleusercontent.com/aida/AP1WRLvCQHPuNJbeK0Sfd2bxWEOP5JnfHYggH2jCOknBbVLd_i5z6i_zA4DoVRS9GwrDN0mnyQzATFulcIPJ56YSynE8mtwYdgOFsFOYesFTizA4nU-5ny13EUOO98JytMOPq9CTRcosw_dsdjhJBHsVQW5lGNjK-lF3yWGDz1NwgVQ7RMKVxrSiIU89JgVYy1MUSMuNCcJazvnO17jum2EGbM3eT4rjL3oUdVnHK__uL-AFjne-c8ceAZ7wvyV3"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-7 sm:p-9">
-            <span class="font-grotesk text-[9px] font-bold tracking-[0.3em] uppercase text-parisian-gold mb-2">Frauenfussball</span>
-            <h3 class="font-bebas text-3xl sm:text-4xl uppercase mb-3 leading-tight">Espen Girls</h3>
-            <p class="font-grotesk text-sm text-white/65 mb-5 leading-relaxed">Mädchenfussball-Förderung und Chancengleichheit im Sport.</p>
-            <button class="w-fit font-grotesk text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white/50 pb-0.5 hover:text-parisian-gold hover:border-parisian-gold transition-colors">
-              Zum Team
-            </button>
-          </div>
-        </article>
-
-        <!-- Card: Membership -->
-        <article class="relative overflow-hidden group cursor-pointer" style="min-height:400px">
-          <!-- History bg -->
-          <div class="absolute inset-0">
-            <img alt="Espenmoos Stadion" loading="lazy"
-              class="w-full h-full object-cover opacity-15 group-hover:opacity-25 transition-all duration-700"
-              src="https://lh3.googleusercontent.com/aida/AP1WRLsRAimsdEnesSUO0HBBtHQDKy3rQjjN-P_Iu-7w6f7-OqZ9oLWF2w0U7C5mvHOi3JhE-vvjGFAUKqyDlPISq9u2-nvo9opQxdhQhr3sqCczW4V6oO-03EV9atS5OeKRK35hM6trvmhacOUtUT_i-13BYPt0FZr6LvLX_zDKa0vuA_vmcDAiocyNmWMFzIhFSXMZW-toQDRj4_Zlf4k0zPXoadYGyTa9z2wOjRROTd82KfAcueblM7spaIAm"/>
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-matte-black via-matte-black/70 to-transparent border border-parisian-gold/15 flex flex-col justify-end p-7 sm:p-9">
-            <span class="font-grotesk text-[9px] font-bold tracking-[0.3em] uppercase text-parisian-gold mb-2">Seit 1992</span>
-            <h3 class="font-bebas text-3xl sm:text-4xl uppercase mb-3 leading-tight">Unsere Geschichte</h3>
-            <p class="font-grotesk text-sm text-white/65 mb-5 leading-relaxed">Seit 1992 ein fester Bestandteil der St. Galler Fussballkultur.</p>
-            <button class="w-fit font-grotesk text-[10px] font-bold tracking-[0.2em] uppercase border-b border-parisian-gold/50 pb-0.5 text-parisian-gold hover:border-parisian-gold transition-colors">
-              Chronik ansehen
-            </button>
-          </div>
-        </article>
-      </div>
-
-      <!-- Membership CTA banner -->
-      <div class="mt-5 sm:mt-6 bg-rubine-red p-7 sm:p-9 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-        <div>
-          <span class="font-grotesk text-[9px] font-bold tracking-[0.3em] uppercase text-white/70 block mb-1">Werde Teil der Familie</span>
-          <h3 class="font-bebas text-2xl sm:text-3xl uppercase">Club Mitgliedschaft</h3>
-          <p class="font-grotesk text-sm text-white/75 mt-1 leading-relaxed max-w-lg">Unterstütze den Verein aktiv und profitiere von exklusiven Vorteilen.</p>
         </div>
-        <button class="flex-shrink-0 bg-white text-matte-black font-grotesk text-[11px] font-bold px-8 py-4 tracking-[0.25em] uppercase hover:bg-parisian-gold transition-all whitespace-nowrap">
-          Jetzt Mitglied werden
-        </button>
       </div>
     </div>
-  </section>
 
-  <!-- ── SPONSORING ─────────────────────── -->
-  <section class="py-16 sm:py-20 border-t border-white/5" aria-label="Sponsoring">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 text-center">
-      <h3 class="font-grotesk text-[9px] font-bold tracking-[0.4em] text-white/35 uppercase mb-10 sm:mb-12">Unsere Hauptpartner</h3>
-
-      <!-- Logos -->
-      <div class="flex flex-wrap justify-center items-center gap-8 sm:gap-14 mb-14 sm:mb-20">
-        <span class="font-bebas text-2xl sm:text-3xl text-white/20 hover:text-white/60 transition-colors duration-500 cursor-default">ROHA</span>
-        <span class="font-bebas text-2xl sm:text-3xl text-white/20 hover:text-white/60 transition-colors duration-500 cursor-default">SGKFV</span>
-        <span class="font-bebas text-2xl sm:text-3xl text-white/20 hover:text-white/60 transition-colors duration-500 cursor-default">OFV</span>
-        <span class="font-bebas text-2xl sm:text-3xl text-white/20 hover:text-white/60 transition-colors duration-500 cursor-default">SFV</span>
-        <span class="font-bebas text-2xl sm:text-3xl text-white/20 hover:text-white/60 transition-colors duration-500 cursor-default">CITY-SNC</span>
-      </div>
-
-      <!-- Partner CTA -->
-      <div class="border border-parisian-gold/15 p-8 sm:p-12">
-        <span class="font-grotesk text-[9px] font-bold tracking-[0.35em] text-parisian-gold uppercase block mb-3">Partner werden</span>
-        <h4 class="font-bebas text-3xl sm:text-4xl lg:text-5xl uppercase mb-4">Gemeinsam stark</h4>
-        <p class="font-grotesk text-base text-white/50 mb-8 max-w-xl mx-auto leading-relaxed">
-          Unterstützen Sie die lokale Fussballkultur und profitieren Sie von einer starken Werbepräsenz in einer leidenschaftlichen Gemeinschaft.
-        </p>
-        <button class="bg-rubine-red text-white font-grotesk text-[11px] font-bold px-10 sm:px-14 py-4 tracking-[0.3em] hover:bg-white hover:text-matte-black transition-all uppercase">
-          Sponsoring Unterlagen
-        </button>
+    <div id="tab-jr" class="tab-pane hidden">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div class="bg-card p-6 border border-white/[0.06]">
+          <span class="cat-pill bg-besa-red text-white mb-4 block w-fit">C-Junioren</span>
+          <h4 class="font-display text-2xl uppercase mb-2">FC Wittenbach</h4>
+          <p class="text-besa-white/50 text-sm">21. April · 10:00 · Auswärts</p>
+          <a href="#" class="mt-4 inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-besa-white/35 hover:text-besa-red">
+            Details <span class="ms" style="font-size:13px">arrow_forward</span>
+          </a>
+        </div>
+        <div class="bg-card p-6 border border-white/[0.06]">
+          <span class="cat-pill bg-besa-white/10 text-besa-white mb-4 block w-fit">B-Junioren</span>
+          <h4 class="font-display text-2xl uppercase mb-2">Kader 2024</h4>
+          <p class="text-besa-white/50 text-sm">Nachwuchsförderung im Fokus.</p>
+          <a href="#" class="mt-4 inline-flex items-center gap-1.5 text-[10px] font-bold tracking-widest uppercase text-besa-white/35 hover:text-besa-red">
+            Zum Team <span class="ms" style="font-size:13px">arrow_forward</span>
+          </a>
+        </div>
+        <div class="bg-card p-6 border border-white/[0.06] flex items-center justify-center border-dashed">
+          <div class="text-center">
+            <span class="ms text-besa-white/15" style="font-size:36px">add</span>
+            <p class="text-besa-white/35 text-sm mt-2">Mehr Teams bald</p>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+
+    <div id="tab-eg" class="tab-pane hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div class="relative overflow-hidden group cursor-pointer" style="min-height:280px">
+          <img src="https://lh3.googleusercontent.com/aida/AP1WRLvCQHPuNJbeK0Sfd2bxWEOP5JnfHYggH2jCOknBbVLd_i5z6i_zA4DoVRS9GwrDN0mnyQzATFulcIPJ56YSynE8mtwYdgOFsFOYesFTizA4nU-5ny13EUOO98JytMOPq9CTRcosw_dsdjhJBHsVQW5lGNjK-lF3yWGDz1NwgVQ7RMKVxrSiIU89JgVYy1MUSMuNCcJazvnO17jum2EGbM3eT4rjL3oUdVnHK__uL-AFjne-c8ceAZ7wvyV3"
+            alt="Espen Girls" loading="lazy" class="w-full h-full object-cover opacity-50 group-hover:opacity-75 transition-all duration-700" style="min-height:280px"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-7">
+            <span class="cat-pill bg-besa-red text-white mb-3">Frauenfussball</span>
+            <h3 class="font-display text-3xl uppercase text-white">Espen Girls</h3>
+            <p class="text-besa-white/55 text-sm mt-2">Mädchenfussball-Förderung und Chancengleichheit.</p>
+          </div>
+        </div>
+        <div class="bg-card p-7 sm:p-9 flex flex-col justify-center border border-white/[0.06]">
+          <h4 class="font-display text-3xl uppercase mb-4">Mädchen willkommen!</h4>
+          <p class="text-besa-white/60 text-sm leading-relaxed mb-6">Der FC Besa fördert aktiv den Mädchen- und Frauenfussball in der Region St. Gallen. Ob Anfängerin oder erfahrene Spielerin – bei uns ist jede herzlich willkommen.</p>
+          <a href="#" class="inline-flex items-center gap-2 bg-besa-red text-white text-[10px] font-bold tracking-[.2em] uppercase px-6 py-3 hover:bg-besa-white hover:text-besa-black w-fit">
+            Jetzt mitmachen <span class="ms" style="font-size:14px">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     PARTNERS  (PSG: prominent sponsor strip)
+════════════════════════════════════════ -->
+<section class="py-10 sm:py-12 bg-card border-t border-b border-white/[0.06]" aria-label="Partner">
+  <div class="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center gap-2.5 mb-7">
+      <span class="sh-accent" aria-hidden="true"></span>
+      <h2 class="font-display text-xl sm:text-2xl uppercase tracking-wider">Unsere Partner</h2>
+    </div>
+    <!-- Logo strip -->
+    <div class="flex flex-wrap items-center justify-start gap-8 sm:gap-14 mb-10">
+      <span class="font-display text-2xl text-besa-white/20 hover:text-besa-white/60 transition-colors cursor-default">ROHA</span>
+      <span class="font-display text-2xl text-besa-white/20 hover:text-besa-white/60 transition-colors cursor-default">SGKFV</span>
+      <span class="font-display text-2xl text-besa-white/20 hover:text-besa-white/60 transition-colors cursor-default">OFV</span>
+      <span class="font-display text-2xl text-besa-white/20 hover:text-besa-white/60 transition-colors cursor-default">SFV</span>
+      <span class="font-display text-2xl text-besa-white/20 hover:text-besa-white/60 transition-colors cursor-default">CITY-SNC</span>
+    </div>
+    <!-- CTA (PSG-style: contained) -->
+    <div class="bg-besa-black border border-white/[0.07] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+      <div>
+        <p class="text-[10px] font-bold tracking-[.2em] uppercase text-besa-gold mb-1">Partner werden</p>
+        <h4 class="font-display text-2xl sm:text-3xl uppercase">Gemeinsam für St. Gallen</h4>
+        <p class="text-besa-white/45 text-sm mt-1 max-w-lg leading-relaxed">Unterstützen Sie lokale Fussballkultur und profitieren Sie von starker Werbepräsenz.</p>
+      </div>
+      <a href="#" class="flex-shrink-0 bg-besa-red text-white text-[10px] font-bold tracking-[.2em] uppercase px-8 py-3.5 hover:bg-besa-white hover:text-besa-black">
+        Sponsoring Unterlagen
+      </a>
+    </div>
+  </div>
+</section>
 
 </main>
 
-<!-- ═══════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════ -->
-<footer class="bg-surface-container-lowest pt-16 sm:pt-20 pb-10" role="contentinfo">
-  <div class="max-w-[1600px] mx-auto px-4 sm:px-6">
+<!-- ──────────────────────────────────────
+     FOOTER  (PSG: dark, multi-column, social + app)
+────────────────────────────────────────── -->
+<footer class="bg-[#0a0504] pt-14 sm:pt-16 pb-8 border-t border-white/[0.07]" role="contentinfo">
+  <div class="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Top grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 mb-14 sm:mb-16">
+    <!-- Top: Logo + columns grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 mb-12 sm:mb-14">
 
-      <!-- Brand -->
-      <div class="col-span-2 sm:col-span-2 lg:col-span-1">
-        <img alt="FC Besa St. Gallen" class="h-14 mb-6 grayscale hover:grayscale-0 transition-all duration-500"
-          src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"/>
-        <address class="font-grotesk text-sm text-white/35 leading-loose not-italic">
-          FC Besa St. Gallen<br/>
-          Postfach 612<br/>
-          CH-9001 St. Gallen
+      <!-- Brand col (spans 2 on lg) -->
+      <div class="col-span-2 sm:col-span-2 lg:col-span-2">
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+          alt="FC Besa St. Gallen" class="h-12 sm:h-14 mb-5 grayscale hover:grayscale-0 transition-all duration-500"/>
+        <address class="not-italic text-besa-white/35 text-sm leading-loose mb-5">
+          FC Besa St. Gallen<br>
+          Postfach 612<br>
+          CH-9001 St. Gallen<br>
+          <a href="mailto:info@fcbesa.ch" class="hover:text-besa-white transition-colors">info@fcbesa.ch</a>
         </address>
-        <div class="flex gap-2 mt-6">
-          <a href="#" aria-label="Facebook" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-rubine-red hover:border-rubine-red transition-all">
-            <span class="material-symbols-outlined" style="font-size:18px">facebook</span>
+        <!-- Social icons (PSG-style: flat, no border) -->
+        <div class="flex gap-3">
+          <a href="#" aria-label="Facebook" class="w-9 h-9 flex items-center justify-center text-besa-white/35 hover:text-white hover:bg-besa-red transition-all">
+            <span class="ms" style="font-size:18px">facebook</span>
           </a>
-          <a href="#" aria-label="Instagram" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-rubine-red hover:border-rubine-red transition-all">
-            <span class="material-symbols-outlined" style="font-size:18px">photo_camera</span>
+          <a href="#" aria-label="Instagram" class="w-9 h-9 flex items-center justify-center text-besa-white/35 hover:text-white hover:bg-besa-red transition-all">
+            <span class="ms" style="font-size:18px">photo_camera</span>
           </a>
-          <a href="#" aria-label="YouTube" class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-rubine-red hover:border-rubine-red transition-all">
-            <span class="material-symbols-outlined" style="font-size:18px">smart_display</span>
+          <a href="#" aria-label="YouTube" class="w-9 h-9 flex items-center justify-center text-besa-white/35 hover:text-white hover:bg-besa-red transition-all">
+            <span class="ms" style="font-size:18px">smart_display</span>
+          </a>
+          <a href="#" aria-label="TikTok" class="w-9 h-9 flex items-center justify-center text-besa-white/35 hover:text-white hover:bg-besa-red transition-all">
+            <span class="ms" style="font-size:18px">music_video</span>
           </a>
         </div>
       </div>
 
       <!-- Verein -->
       <div>
-        <h5 class="font-grotesk text-[10px] font-bold tracking-[0.2em] text-white uppercase mb-5">Verein</h5>
-        <ul class="space-y-3">
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Vorstand</a></li>
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Geschichte</a></li>
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Stadion</a></li>
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Medien</a></li>
+        <h5 class="font-body text-[10px] font-bold tracking-[.18em] uppercase text-besa-white mb-4">Verein</h5>
+        <ul class="space-y-2.5">
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Vorstand</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Geschichte</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Stadion</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Medien</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Mitgliedschaft</a></li>
         </ul>
       </div>
 
       <!-- Teams -->
       <div>
-        <h5 class="font-grotesk text-[10px] font-bold tracking-[0.2em] text-white uppercase mb-5">Teams</h5>
-        <ul class="space-y-3">
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">1. Mannschaft</a></li>
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Junioren</a></li>
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Espen Girls</a></li>
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Mitgliedschaft</a></li>
+        <h5 class="font-body text-[10px] font-bold tracking-[.18em] uppercase text-besa-white mb-4">Teams</h5>
+        <ul class="space-y-2.5">
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">1. Mannschaft</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">C-Junioren</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">B-Junioren</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Espen Girls</a></li>
         </ul>
       </div>
 
-      <!-- Quicklinks -->
+      <!-- Services -->
       <div>
-        <h5 class="font-grotesk text-[10px] font-bold tracking-[0.2em] text-white uppercase mb-5">Quicklinks</h5>
-        <ul class="space-y-3">
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Impressum</a></li>
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Datenschutz</a></li>
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Kontakt</a></li>
-          <li><a href="#" class="font-grotesk text-sm text-white/35 hover:text-white transition-colors">Cookie-Einstellungen</a></li>
+        <h5 class="font-body text-[10px] font-bold tracking-[.18em] uppercase text-besa-white mb-4">Services</h5>
+        <ul class="space-y-2.5">
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Tickets</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Shop</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Sponsoring</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Impressum</a></li>
+          <li><a href="#" class="text-sm text-besa-white/35 hover:text-besa-red transition-colors">Datenschutz</a></li>
         </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar (PSG-style: copyright + partners) -->
+    <div class="pt-7 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p class="text-besa-white/20 text-[10px] font-bold tracking-widest uppercase">© 2024 FC Besa St. Gallen. All Rights Reserved.</p>
+      <div class="flex items-center gap-6 text-besa-white/15 hover:text-besa-white/40 transition-all">
+        <span class="font-body text-[10px] tracking-widest uppercase">Offizieller Partner des</span>
+        <span class="font-display text-base">OFV</span>
+        <span class="font-display text-base">SFV</span>
       </div>
     </div>
 
-    <!-- Bottom bar -->
-    <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <p class="font-grotesk text-[10px] tracking-widest text-white/20 uppercase">© 2024 FC Besa St. Gallen. All Rights Reserved.</p>
-      <div class="flex items-center gap-6 opacity-25 hover:opacity-70 transition-all">
-        <span class="font-grotesk text-[10px] tracking-widest uppercase">Offizieller Partner des</span>
-        <span class="font-bebas text-base">OFV</span>
-        <span class="font-bebas text-base">SFV</span>
-      </div>
-    </div>
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════
+<!-- ──────────────────────────────────────
      SCRIPTS
-═══════════════════════════════════════ -->
+────────────────────────────────────────── -->
 <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileDrawer = document.getElementById('mobile-drawer');
-  const drawerOverlay = document.getElementById('drawer-overlay');
-  const drawerClose = document.getElementById('drawer-close');
+// Mobile drawer
+const btn  = document.getElementById('menu-btn');
+const drw  = document.getElementById('drawer');
+const ovl  = document.getElementById('overlay');
+const cls  = document.getElementById('drawer-close');
 
-  function openDrawer() {
-    mobileDrawer.classList.add('is-open');
-    drawerOverlay.classList.add('is-open');
-    menuToggle.setAttribute('aria-expanded', 'true');
-    document.body.classList.add('menu-open');
-    drawerClose.focus();
-  }
+function open() {
+  drw.classList.add('open'); ovl.classList.add('open');
+  btn.setAttribute('aria-expanded','true');
+  document.body.classList.add('menu-open');
+  cls.focus();
+}
+function close() {
+  drw.classList.remove('open'); ovl.classList.remove('open');
+  btn.setAttribute('aria-expanded','false');
+  document.body.classList.remove('menu-open');
+  btn.focus();
+}
+btn.addEventListener('click', open);
+cls.addEventListener('click', close);
+ovl.addEventListener('click', close);
+document.addEventListener('keydown', e => e.key === 'Escape' && close());
 
-  function closeDrawer() {
-    mobileDrawer.classList.remove('is-open');
-    drawerOverlay.classList.remove('is-open');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    document.body.classList.remove('menu-open');
-    menuToggle.focus();
-  }
+// Focus trap
+drw.addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const els = drw.querySelectorAll('a,button,[tabindex]:not([tabindex="-1"])');
+  const [f,l] = [els[0], els[els.length-1]];
+  if (e.shiftKey && document.activeElement===f) { e.preventDefault(); l.focus(); }
+  else if (!e.shiftKey && document.activeElement===l) { e.preventDefault(); f.focus(); }
+});
 
-  menuToggle.addEventListener('click', openDrawer);
-  drawerClose.addEventListener('click', closeDrawer);
-  drawerOverlay.addEventListener('click', closeDrawer);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) nav.style.borderBottomColor = 'rgba(164,0,17,.25)';
+  else nav.style.borderBottomColor = 'rgba(255,255,255,.07)';
+}, {passive:true});
 
-  // Trap focus inside drawer
-  mobileDrawer.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab') return;
-    const focusable = mobileDrawer.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
-    const first = focusable[0], last = focusable[focusable.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  });
+// Team tabs
+function setTab(el, paneId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.add('hidden'));
+  el.classList.add('active');
+  document.getElementById(paneId).classList.remove('hidden');
+}
 
-  // Nav scroll shrink
-  const mainNav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-      mainNav.style.borderBottomColor = 'rgba(197,160,89,0.25)';
-    } else {
-      mainNav.style.borderBottomColor = 'rgba(197,160,89,0.15)';
-    }
-  }, { passive: true });
+// Lazy load fade-in
+document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+  if (img.complete) img.classList.add('loaded');
+  else img.addEventListener('load', () => img.classList.add('loaded'));
+});
 </script>
 
 </body>
