@@ -142,7 +142,7 @@ img[loading="lazy"].loaded { opacity: 1; }
      NAVIGATION  (PSG-style: solid, clean)
 ────────────────────────────────────────── -->
 <header>
-<nav id="nav" class="sticky top-0 z-50 bg-besa-black border-b border-white/[0.07]">
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 bg-besa-black border-b border-white/[0.07] transition-transform duration-300">
   <div class="max-w-[1480px] mx-auto h-[66px] sm:h-[72px] flex items-center justify-between px-4 sm:px-6 lg:px-8">
 
     <!-- Logo -->
@@ -182,7 +182,7 @@ img[loading="lazy"].loaded { opacity: 1; }
 <!-- ──────────────────────────────────────
      MAIN
 ────────────────────────────────────────── -->
-<main id="main">
+<main id="main" class="pt-[66px] sm:pt-[72px]">
 
 <!-- ════════════════════════════════════
      HERO  (PSG: full-bleed, editorial)
@@ -916,6 +916,23 @@ document.querySelectorAll('img[loading="lazy"]').forEach(img => {
   if (img.complete) img.classList.add('loaded');
   else img.addEventListener('load', () => img.classList.add('loaded'));
 });
+
+// Hide nav on scroll down, show on scroll up
+(function() {
+  const nav = document.getElementById('nav');
+  let lastY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < 80) {
+      nav.style.transform = 'translateY(0)';
+    } else if (y > lastY) {
+      nav.style.transform = 'translateY(-100%)';
+    } else {
+      nav.style.transform = 'translateY(0)';
+    }
+    lastY = y;
+  }, { passive: true });
+})();
 </script>
 
 </body>
