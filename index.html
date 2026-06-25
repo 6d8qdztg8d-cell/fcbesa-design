@@ -101,28 +101,6 @@ img[loading="lazy"].loaded { opacity: 1; }
 </a>
 
 <!-- ──────────────────────────────────────
-     SCROLLING TICKER
-────────────────────────────────────────── -->
-<div class="ticker-wrap" role="marquee" aria-label="Aktuelle Nachrichten">
-  <div class="ticker-track" aria-hidden="true">
-    <!-- First copy -->
-    <span class="ticker-item">FC Besa vs FC Arbon</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">14. April · 16:00 · Espenmoos</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">Heimsieg 4:1 gegen RG17 II</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">Eagles Cup 2024: Jetzt anmelden</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">C-Junioren vs FC Wittenbach · 21. Apr · 10:00</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">Clubmitgliedschaft 2024 offen</span><span class="ticker-sep">•</span>
-    <!-- Duplicate for seamless loop -->
-    <span class="ticker-item">FC Besa vs FC Arbon</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">14. April · 16:00 · Espenmoos</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">Heimsieg 4:1 gegen RG17 II</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">Eagles Cup 2024: Jetzt anmelden</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">C-Junioren vs FC Wittenbach · 21. Apr · 10:00</span><span class="ticker-sep">•</span>
-    <span class="ticker-item">Clubmitgliedschaft 2024 offen</span><span class="ticker-sep">•</span>
-  </div>
-</div>
-
-<!-- ──────────────────────────────────────
      MOBILE DRAWER OVERLAY
 ────────────────────────────────────────── -->
 <div id="overlay" aria-hidden="true" class="fixed inset-0 bg-black/75 z-[80] lg:hidden"></div>
@@ -191,14 +169,6 @@ img[loading="lazy"].loaded { opacity: 1; }
       <button aria-label="Mein Konto" class="w-10 h-10 hidden sm:flex items-center justify-center text-besa-white/55 hover:text-besa-white">
         <span class="ms" style="font-size:21px">person</span>
       </button>
-      <button aria-label="Warenkorb" class="w-10 h-10 hidden sm:flex items-center justify-center text-besa-white/55 hover:text-besa-white relative">
-        <span class="ms" style="font-size:21px">shopping_bag</span>
-        <span class="absolute top-1.5 right-1 bg-besa-red text-white text-[8px] font-bold w-[14px] h-[14px] rounded-full flex items-center justify-center">0</span>
-      </button>
-      <!-- PSG-style CTA in nav -->
-      <a href="#" class="hidden lg:flex ml-3 items-center bg-besa-red text-white text-[10.5px] font-bold tracking-[.18em] uppercase px-5 py-2.5 hover:bg-white hover:text-besa-black">
-        Shop
-      </a>
       <button id="menu-btn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="drawer"
         class="lg:hidden w-10 h-10 flex items-center justify-center text-besa-white/60 hover:text-besa-white ml-1">
         <span class="ms" style="font-size:22px">menu</span>
@@ -518,22 +488,7 @@ img[loading="lazy"].loaded { opacity: 1; }
     </div>
 
     <!-- Second news row (PSG-style: 3 equal cards) -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 mt-4 sm:mt-5">
-
-      <article class="group cursor-pointer bg-card hover:bg-card-hover overflow-hidden">
-        <div class="relative overflow-hidden" style="aspect-ratio:16/9">
-          <img src="https://lh3.googleusercontent.com/aida/AP1WRLsW5fcw4E6gmfJXmx6_DPt7UIxTZonOMvAr7xmNJuvyS4_gQBUW3aQxFieRs39VsMs4OsNMEtZ5WgtwH_OkzgAFPvabXFLabf7yLYPuyxVTGGFKZseyaEDtdcJoWMLJqTjET-0o7grv_tavaOkOy7ywIlT1ZhKcXES63hvZPNbiXdIR-51EzYZiAkZuNmph4p7yyYNLP_LnKl-Ylvxn5tlgaKlHSxwEJdW-gvPZZ96E_B8zDEwxWDCCGuZn"
-            alt="Espen Girls" loading="lazy"
-            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"/>
-          <div class="absolute top-3 left-3">
-            <span class="cat-pill bg-besa-red text-white" style="font-size:8px;padding:2px 6px">Espen Girls</span>
-          </div>
-        </div>
-        <div class="p-4">
-          <h4 class="font-display text-xl uppercase leading-tight group-hover:text-besa-red transition-colors">Espen Girls starten stark in die Rückrunde</h4>
-          <span class="text-besa-white/30 text-[10px] font-bold tracking-widest uppercase mt-2 block">Vor 3 Tagen</span>
-        </div>
-      </article>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mt-4 sm:mt-5">
 
       <article class="group cursor-pointer bg-card hover:bg-card-hover overflow-hidden">
         <div class="relative overflow-hidden" style="aspect-ratio:16/9">
