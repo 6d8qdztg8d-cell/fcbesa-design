@@ -290,118 +290,124 @@ img[loading="lazy"].loaded { opacity: 1; }
       </a>
     </div>
 
-    <!-- Cards row -->
+    <!-- Cards row — PSG-style: stacked team rows, category badge + status -->
     <div class="flex gap-4 sm:gap-5 overflow-x-auto no-sb pb-1 -mx-4 sm:mx-0 px-4 sm:px-0">
 
       <!-- Match: Upcoming -->
-      <article class="flex-shrink-0 w-[280px] sm:w-[320px] bg-besa-black border border-white/[0.08] hover:border-besa-red/40 cursor-pointer group" aria-label="Nächstes Spiel: FC Besa vs FC Arbon">
-        <div class="px-5 pt-4 pb-3 border-b border-white/[0.06] flex items-center justify-between">
-          <span class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/40">2. Liga Regional</span>
-          <span class="bg-besa-red/15 text-besa-red text-[9.5px] font-bold tracking-[.12em] uppercase px-2.5 py-0.5">Demnächst</span>
+      <article class="flex-shrink-0 w-[300px] sm:w-[340px] bg-besa-black border border-white/[0.08] hover:border-besa-red/40 cursor-pointer group relative overflow-hidden" aria-label="Nächstes Spiel: FC Besa vs FC Arbon">
+        <!-- Watermark -->
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+          alt="" aria-hidden="true" class="absolute right-3 bottom-3 h-24 w-auto opacity-[0.04] pointer-events-none select-none"/>
+        <!-- Header: [badge] STATUS -->
+        <div class="px-5 pt-5 pb-4 flex items-center gap-3">
+          <span class="bg-white/[0.08] text-besa-white/55 text-[9px] font-bold uppercase tracking-[.14em] px-2 py-0.5">2. LR</span>
+          <span class="text-besa-white/45 text-[11px] font-bold uppercase tracking-[.1em]">Demnächst</span>
         </div>
-        <div class="px-5 py-6 flex items-center justify-between gap-3">
-          <div class="text-center flex-1">
+        <!-- Team rows (PSG layout) -->
+        <div class="px-5 pb-3 space-y-3">
+          <div class="flex items-center gap-3">
             <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
-              alt="FC Besa" loading="lazy" class="h-14 mx-auto mb-2 opacity-90"/>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-besa-white/70">FC Besa</p>
+              alt="FC Besa" loading="lazy" class="h-8 w-8 object-contain flex-shrink-0"/>
+            <span class="font-body font-black italic uppercase text-besa-white text-xl flex-1 leading-none">FC Besa</span>
+            <span class="font-body font-black italic text-besa-white/25 text-xl">—</span>
           </div>
-          <div class="text-center px-2">
-            <p class="font-display text-lg tracking-widest text-besa-white/35">VS</p>
-            <p class="text-[10px] text-besa-gold font-bold mt-1">14.04 · 16:00</p>
-          </div>
-          <div class="text-center flex-1">
-            <div class="h-14 flex items-center justify-center mb-2">
-              <span class="ms text-besa-white/20" style="font-size:38px">sports_soccer</span>
+          <div class="flex items-center gap-3">
+            <div class="h-8 w-8 flex items-center justify-center flex-shrink-0">
+              <span class="ms text-besa-white/18" style="font-size:26px">sports_soccer</span>
             </div>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-besa-white/45">FC Arbon</p>
+            <span class="font-body font-black italic uppercase text-besa-white/45 text-xl flex-1 leading-none">FC Arbon</span>
+            <span class="font-body font-black italic text-besa-white/18 text-xl">—</span>
           </div>
+          <p class="text-[9.5px] text-besa-gold font-bold pl-11 pb-1">14.04 · 16:00 · Espenmoos</p>
         </div>
-        <div class="border-t border-white/[0.06] px-5 py-3 text-center">
-          <span class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/30 group-hover:text-besa-red">Match Center →</span>
+        <div class="border-t border-white/[0.06] px-5 py-3">
+          <span class="text-[9px] font-bold tracking-[.18em] uppercase text-besa-white/25 group-hover:text-besa-red transition-colors">Match Center →</span>
         </div>
       </article>
 
       <!-- Match: Result WIN -->
-      <article class="flex-shrink-0 w-[280px] sm:w-[320px] bg-besa-black border border-white/[0.08] hover:border-white/20 cursor-pointer group">
-        <div class="px-5 pt-4 pb-3 border-b border-white/[0.06] flex items-center justify-between">
-          <span class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/40">2. Liga Regional</span>
-          <span class="bg-besa-gold/10 text-besa-gold text-[9.5px] font-bold tracking-[.12em] uppercase px-2.5 py-0.5">Gestern</span>
+      <article class="flex-shrink-0 w-[300px] sm:w-[340px] bg-besa-black border border-white/[0.08] hover:border-white/20 cursor-pointer group relative overflow-hidden">
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+          alt="" aria-hidden="true" class="absolute right-3 bottom-3 h-24 w-auto opacity-[0.04] pointer-events-none select-none"/>
+        <div class="px-5 pt-5 pb-4 flex items-center gap-3">
+          <span class="bg-white/[0.08] text-besa-white/55 text-[9px] font-bold uppercase tracking-[.14em] px-2 py-0.5">2. LR</span>
+          <span class="text-besa-white/45 text-[11px] font-bold uppercase tracking-[.1em]">Abgepfiffen</span>
         </div>
-        <div class="px-5 py-6 flex items-center justify-between gap-3">
-          <div class="text-center flex-1">
+        <div class="px-5 pb-3 space-y-3">
+          <div class="flex items-center gap-3">
             <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
-              alt="FC Besa" loading="lazy" class="h-14 mx-auto mb-2 opacity-90"/>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-besa-white/70">FC Besa</p>
+              alt="FC Besa" loading="lazy" class="h-8 w-8 object-contain flex-shrink-0"/>
+            <span class="font-body font-black italic uppercase text-besa-white text-xl flex-1 leading-none">FC Besa</span>
+            <span class="font-body font-black italic text-besa-red text-2xl leading-none">4</span>
           </div>
-          <div class="text-center px-2">
-            <p class="font-display text-3xl text-besa-red leading-none">4:1</p>
-            <p class="text-[9px] font-bold tracking-wider uppercase text-besa-gold mt-1.5">Sieg</p>
-          </div>
-          <div class="text-center flex-1">
-            <div class="h-14 flex items-center justify-center mb-2">
-              <span class="ms text-besa-white/20" style="font-size:38px">sports_soccer</span>
+          <div class="flex items-center gap-3">
+            <div class="h-8 w-8 flex items-center justify-center flex-shrink-0">
+              <span class="ms text-besa-white/18" style="font-size:26px">sports_soccer</span>
             </div>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-besa-white/45">FC RG17 II</p>
+            <span class="font-body font-black italic uppercase text-besa-white/45 text-xl flex-1 leading-none">FC RG17 II</span>
+            <span class="font-body font-black italic text-besa-white/35 text-2xl leading-none">1</span>
           </div>
         </div>
-        <div class="border-t border-white/[0.06] px-5 py-3 text-center">
-          <span class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/30 group-hover:text-besa-red">Matchbericht →</span>
+        <div class="border-t border-white/[0.06] px-5 py-3">
+          <span class="text-[9px] font-bold tracking-[.18em] uppercase text-besa-white/25 group-hover:text-besa-red transition-colors">Matchbericht →</span>
         </div>
       </article>
 
       <!-- Match: C-Junioren -->
-      <article class="flex-shrink-0 w-[280px] sm:w-[320px] bg-besa-black border border-white/[0.08] hover:border-white/20 cursor-pointer group">
-        <div class="px-5 pt-4 pb-3 border-b border-white/[0.06] flex items-center justify-between">
-          <span class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/40">C-Junioren</span>
-          <span class="text-[9.5px] font-bold tracking-[.12em] uppercase text-besa-white/30">21. Apr</span>
+      <article class="flex-shrink-0 w-[300px] sm:w-[340px] bg-besa-black border border-white/[0.08] hover:border-white/20 cursor-pointer group relative overflow-hidden">
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+          alt="" aria-hidden="true" class="absolute right-3 bottom-3 h-24 w-auto opacity-[0.04] pointer-events-none select-none"/>
+        <div class="px-5 pt-5 pb-4 flex items-center gap-3">
+          <span class="bg-white/[0.08] text-besa-white/55 text-[9px] font-bold uppercase tracking-[.14em] px-2 py-0.5">C-JUN</span>
+          <span class="text-besa-white/45 text-[11px] font-bold uppercase tracking-[.1em]">Demnächst</span>
         </div>
-        <div class="px-5 py-6 flex items-center justify-between gap-3">
-          <div class="text-center flex-1">
-            <div class="h-14 flex items-center justify-center mb-2">
-              <span class="ms text-besa-white/20" style="font-size:38px">sports_soccer</span>
+        <div class="px-5 pb-3 space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="h-8 w-8 flex items-center justify-center flex-shrink-0">
+              <span class="ms text-besa-white/18" style="font-size:26px">sports_soccer</span>
             </div>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-besa-white/45">FC Wittenbach</p>
+            <span class="font-body font-black italic uppercase text-besa-white/45 text-xl flex-1 leading-none">FC Wittenbach</span>
+            <span class="font-body font-black italic text-besa-white/18 text-xl">—</span>
           </div>
-          <div class="text-center px-2">
-            <p class="font-display text-lg tracking-widest text-besa-white/35">VS</p>
-            <p class="text-[10px] text-besa-white/30 font-bold mt-1">10:00</p>
-          </div>
-          <div class="text-center flex-1">
+          <div class="flex items-center gap-3">
             <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
-              alt="FC Besa" loading="lazy" class="h-14 mx-auto mb-2 opacity-90"/>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-besa-white/70">FC Besa</p>
+              alt="FC Besa" loading="lazy" class="h-8 w-8 object-contain flex-shrink-0"/>
+            <span class="font-body font-black italic uppercase text-besa-white text-xl flex-1 leading-none">FC Besa</span>
+            <span class="font-body font-black italic text-besa-white/18 text-xl">—</span>
           </div>
+          <p class="text-[9.5px] text-besa-white/30 font-bold pl-11 pb-1">21. Apr · 10:00 · Auswärts</p>
         </div>
-        <div class="border-t border-white/[0.06] px-5 py-3 text-center">
-          <span class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/30 group-hover:text-besa-red">Match Center →</span>
+        <div class="border-t border-white/[0.06] px-5 py-3">
+          <span class="text-[9px] font-bold tracking-[.18em] uppercase text-besa-white/25 group-hover:text-besa-red transition-colors">Match Center →</span>
         </div>
       </article>
 
       <!-- Match: 1. Mannschaft upcoming -->
-      <article class="flex-shrink-0 w-[280px] sm:w-[320px] bg-besa-black border border-white/[0.08] hover:border-white/20 cursor-pointer group">
-        <div class="px-5 pt-4 pb-3 border-b border-white/[0.06] flex items-center justify-between">
-          <span class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/40">1. Mannschaft</span>
-          <span class="text-[9.5px] font-bold tracking-[.12em] uppercase text-besa-white/30">28. Apr</span>
+      <article class="flex-shrink-0 w-[300px] sm:w-[340px] bg-besa-black border border-white/[0.08] hover:border-white/20 cursor-pointer group relative overflow-hidden">
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
+          alt="" aria-hidden="true" class="absolute right-3 bottom-3 h-24 w-auto opacity-[0.04] pointer-events-none select-none"/>
+        <div class="px-5 pt-5 pb-4 flex items-center gap-3">
+          <span class="bg-white/[0.08] text-besa-white/55 text-[9px] font-bold uppercase tracking-[.14em] px-2 py-0.5">1. MAN</span>
+          <span class="text-besa-white/45 text-[11px] font-bold uppercase tracking-[.1em]">Demnächst</span>
         </div>
-        <div class="px-5 py-6 flex items-center justify-between gap-3">
-          <div class="text-center flex-1">
+        <div class="px-5 pb-3 space-y-3">
+          <div class="flex items-center gap-3">
             <img src="https://lh3.googleusercontent.com/aida/AP1WRLsLSJQV9n_imcm2RFrUbGdG35qz8HIVw6HsBv5wHgSw4gOW-cbRmlKtukQ7zpDMeXcqUK5LdEmQyRZWIZopwiXPVSBZZ6SlyGpPzko5TuJDX0qZKGuK79gUU-RZ2L6j9GVB6bJNp9Hpq2euHYSZc8iRB-LLa8Zwg8pR3_uDVtSRCGwY9wqQpqyfAVzZccNdTYBlTiDKrZVxR7CNnC--wLFnEbmq9oLZ8jXIW59Bfa84yP5AL3AipL8mtGY"
-              alt="FC Besa" loading="lazy" class="h-14 mx-auto mb-2 opacity-90"/>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-besa-white/70">FC Besa</p>
+              alt="FC Besa" loading="lazy" class="h-8 w-8 object-contain flex-shrink-0"/>
+            <span class="font-body font-black italic uppercase text-besa-white text-xl flex-1 leading-none">FC Besa</span>
+            <span class="font-body font-black italic text-besa-white/18 text-xl">—</span>
           </div>
-          <div class="text-center px-2">
-            <p class="font-display text-lg tracking-widest text-besa-white/35">VS</p>
-            <p class="text-[10px] text-besa-white/30 font-bold mt-1">15:00</p>
-          </div>
-          <div class="text-center flex-1">
-            <div class="h-14 flex items-center justify-center mb-2">
-              <span class="ms text-besa-white/20" style="font-size:38px">sports_soccer</span>
+          <div class="flex items-center gap-3">
+            <div class="h-8 w-8 flex items-center justify-center flex-shrink-0">
+              <span class="ms text-besa-white/18" style="font-size:26px">sports_soccer</span>
             </div>
-            <p class="text-[11px] font-bold uppercase tracking-wider text-besa-white/45">SC Brühl II</p>
+            <span class="font-body font-black italic uppercase text-besa-white/45 text-xl flex-1 leading-none">SC Brühl II</span>
+            <span class="font-body font-black italic text-besa-white/18 text-xl">—</span>
           </div>
+          <p class="text-[9.5px] text-besa-white/30 font-bold pl-11 pb-1">28. Apr · 15:00 · Heimspiel</p>
         </div>
-        <div class="border-t border-white/[0.06] px-5 py-3 text-center">
-          <span class="text-[10px] font-bold tracking-[.15em] uppercase text-besa-white/30 group-hover:text-besa-red">Match Center →</span>
+        <div class="border-t border-white/[0.06] px-5 py-3">
+          <span class="text-[9px] font-bold tracking-[.18em] uppercase text-besa-white/25 group-hover:text-besa-red transition-colors">Match Center →</span>
         </div>
       </article>
 
